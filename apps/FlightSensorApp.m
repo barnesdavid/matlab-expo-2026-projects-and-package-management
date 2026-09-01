@@ -25,6 +25,7 @@ classdef FlightSensorApp < matlab.apps.App
         PlotTypeDropDown                matlab.ui.control.DropDown
         PlotTypeLabel                   matlab.ui.control.Label
         ExploreAxes                     matlab.ui.control.UIAxes
+        ChartHostPanel                  matlab.ui.container.Panel
         ModelTab                        matlab.ui.container.Tab
         ModelGrid                       matlab.ui.container.GridLayout
         ModelSummaryLabel               matlab.ui.control.Label
@@ -187,7 +188,7 @@ classdef FlightSensorApp < matlab.apps.App
                     app.XVariableDropDown.Value = 'Altitude';
                     app.XVariableDropDown.Enable = "on";
                     app.XVariableDropDown.Visible = "on";
-                    app.ExploreSummaryLabel.Text = "Relationship shows the observed operating envelope for the selected signal.";
+                    app.ExploreSummaryLabel.Text = "Relationship uses ScatterFitChart to screen a predictor against true airspeed.";
             end
         end
 
@@ -206,13 +207,21 @@ classdef FlightSensorApp < matlab.apps.App
 
         function showExploreAxes(app)
             app.clearExploreChart();
+            app.ChartHostPanel.Visible = "off";
             app.ExploreAxes.Visible = "on";
         end
 
-        function correlationValue = renderRelationshipChart(app, data, xVariable)
-            app.showExploreAxes();
+        function chartHost = preparePackageChartHost(app)
+            app.clearExploreChart();
+            app.ExploreAxes.Visible = "off";
+            app.ChartHostPanel.Visible = "on";
+            chartHost = app.ChartHostPanel;
+        end
 
-            rows = sampleFlightRows(height(data), 1400);
+        function correlationValue = renderRelationshipChart(app, data, xVariable)
+            chartHost = app.preparePackageChartHost();
+
+            rows = sampleFlightRows(height(data), 700);
             x = data.(xVariable)(rows);
             y = data.TrueAirSpeed(rows);
             validRows = isfinite(x) & isfinite(y);
@@ -220,42 +229,36 @@ classdef FlightSensorApp < matlab.apps.App
             y = y(validRows);
             correlationValue = app.linearCorrelation(x, y);
 
-            scatter(app.ExploreAxes, x, y, 20, ...
-                MarkerEdgeColor=[0.00 0.45 0.74], ...
-                MarkerFaceColor="none", ...
-                MarkerEdgeAlpha=0.52);
+            app.ExploreChart = ScatterFitChart("Parent", chartHost, ...
+                "XData", x, ...
+                "YData", y, ...
+                "SizeData", 20, ...
+                "Marker", "o", ...
+                "LineColor", [0.74 0.23 0.16], ...
+                "LineWidth", 2.2, ...
+                "Controls", "off");
+            app.ExploreChart.LineVisible = abs(correlationValue) >= 0.7;
 
-            [sortedX, sortOrder] = sort(x);
-            sortedY = y(sortOrder);
-            smoothingWindow = max(25, round(numel(sortedX) / 30));
-            hold(app.ExploreAxes, "on");
-            plot(app.ExploreAxes, sortedX, ...
-                smoothdata(sortedY, "movmedian", smoothingWindow), ...
-                LineWidth=2.6, Color=[0.78 0.25 0.12]);
-            hold(app.ExploreAxes, "off");
-
-            grid(app.ExploreAxes, "on");
-            app.ExploreAxes.Box = "on";
-            title(app.ExploreAxes, app.getVariableLabel(xVariable) + " and true airspeed");
-            xlabel(app.ExploreAxes, app.getVariableLabel(xVariable) + app.getVariableUnits(xVariable));
-            ylabel(app.ExploreAxes, "True airspeed (knots)");
+            legend(app.ExploreChart, "off");
+            grid(app.ExploreChart, "on");
+            axis(app.ExploreChart, "padded");
+            title(app.ExploreChart, app.getVariableLabel(xVariable) + " vs. true airspeed");
+            xlabel(app.ExploreChart, app.getVariableLabel(xVariable) + app.getVariableUnits(xVariable));
+            ylabel(app.ExploreChart, "True airspeed (knots)");
         end
 
         function renderTrendChart(app, data, yVariable)
-            app.clearExploreChart();
-            app.ExploreAxes.Visible = "off";
+            chartHost = app.preparePackageChartHost();
 
             rows = sampleFlightRows(height(data), 3000);
             y = data.(yVariable)(rows);
             time = data.Time(rows);
             validRows = isfinite(y) & ~isnat(time);
 
-            app.ExploreChart = LineGradientChart("Parent", app.ChartGrid, ...
+            app.ExploreChart = LineGradientChart("Parent", chartHost, ...
                 "XData", time(validRows), ...
                 "YData", y(validRows), ...
                 "LineWidth", 4.0);
-            app.ExploreChart.Layout.Row = 2;
-            app.ExploreChart.Layout.Column = 1;
 
             colormap(app.ExploreChart, turbo(256));
             trendColorbar = colorbar(app.ExploreChart);
@@ -266,6 +269,9 @@ classdef FlightSensorApp < matlab.apps.App
         end
 
         function renderExploreData(app)
+            % Package chart containers must be created after their tab is visible
+            % so they receive the final grid dimensions.
+            app.ResultsTabGroup.SelectedTab = app.ChartTab;
             data = app.ensureCleanData();
             plotType = string(app.PlotTypeDropDown.Value);
 
@@ -285,11 +291,9 @@ classdef FlightSensorApp < matlab.apps.App
             else
                 xVariable = string(app.XVariableDropDown.Value);
                 correlationValue = app.renderRelationshipChart(data, xVariable);
-                app.ExploreSummaryLabel.Text = sprintf("Observed operating relationship: %s has r = %.2f with true airspeed. The red curve is a rolling median, not a model fit.", ...
+                app.ExploreSummaryLabel.Text = sprintf("ScatterFitChart screen: %s has r = %.2f with true airspeed on cleaned flight rows.", ...
                     app.getVariableLabel(xVariable), correlationValue);
             end
-
-            app.ResultsTabGroup.SelectedTab = app.ChartTab;
         end
 
         function setStatus(app, message)

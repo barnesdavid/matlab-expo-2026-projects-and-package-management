@@ -39,16 +39,15 @@ classdef testFlightSensorApp < matlab.uitest.TestCase
 
             press(testCase, app.ExploreDataButton);
             testCase.verifyEqual(app.ResultsTabGroup.SelectedTab, app.ChartTab);
-            testCase.verifyGreaterThanOrEqual(numel(findobj(app.ExploreAxes, 'Type', 'Line')), 1);
-            testCase.verifySubstring(app.ExploreSummaryLabel.Text, 'rolling median');
+            testCase.verifyNotEmpty(findall(app.ChartGrid, 'Type', 'scatterfitchart'));
+            testCase.verifySubstring(app.ExploreSummaryLabel.Text, 'ScatterFitChart screen');
 
             choose(testCase, app.PlotTypeDropDown, 'Prediction check');
             testCase.verifyGreaterThanOrEqual(numel(findobj(app.ExploreAxes, 'Type', 'Line')), 2);
 
             choose(testCase, app.PlotTypeDropDown, 'Trend');
             testCase.verifyEmpty(findobj(app.ExploreAxes, 'Type', 'Line'));
-            childClasses = arrayfun(@class, app.ChartGrid.Children, UniformOutput=false);
-            testCase.verifyTrue(any(strcmp(childClasses, 'LineGradientChart')));
+            testCase.verifyNotEmpty(findall(app.ChartGrid, 'Type', 'linegradientchart'));
         end
     end
 end

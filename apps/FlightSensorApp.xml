@@ -183,6 +183,13 @@
                                                 <XGrid>'on'</XGrid>
                                                 <YGrid>'on'</YGrid>
                                             </UIAxes>
+                                            <Panel name='ChartHostPanel'>
+                                                <BorderType>'none'</BorderType>
+                                                <Layout>
+                                                    <Column>1</Column>
+                                                    <Row>2</Row>
+                                                </Layout>
+                                            </Panel>
                                             <GridLayout name='ExploreControlGrid'>
                                                 <ColumnSpacing>8</ColumnSpacing>
                                                 <ColumnWidth>{90, 260, '1x'}</ColumnWidth>

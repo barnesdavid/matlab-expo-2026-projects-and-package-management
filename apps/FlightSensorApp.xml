@@ -93,11 +93,12 @@
                                     </Button>
                                     <Button name='ExploreDataButton'>
                                         <ButtonPushedFcn>ExploreDataButtonPushed</ButtonPushedFcn>
+                                        <FontColor>[0.75 0.10 0.10]</FontColor>
                                         <Layout>
                                             <Column>1</Column>
                                             <Row>9</Row>
                                         </Layout>
-                                        <Text>'Explore Data'</Text>
+                                        <Text>'Package Missing: Chart Examples'</Text>
                                     </Button>
                                     <Button name='FitModelButton'>
                                         <ButtonPushedFcn>FitModelButtonPushed</ButtonPushedFcn>

@@ -168,8 +168,16 @@ classdef FlightSensorApp < matlab.apps.App
 
         function updateChartExamplesButton(app)
             try
+                project = currentProject;
+                projectDependencies = project.ProjectDependencies;
+                if isempty(projectDependencies)
+                    dependencyNames = string.empty;
+                else
+                    dependencyNames = string({projectDependencies.Name});
+                end
                 packageInfo = mpmlist("chart_examples");
-                app.ChartExamplesAvailable = ~isempty(packageInfo) && packageInfo.Installed;
+                app.ChartExamplesAvailable = any(dependencyNames == "chart_examples") && ...
+                    ~isempty(packageInfo) && packageInfo.Installed;
             catch
                 app.ChartExamplesAvailable = false;
             end

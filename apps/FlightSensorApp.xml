@@ -1,0 +1,295 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<MATLABApp schemaVersion='1.0.0' release='R2026b.0' minRelease='R2026b'>
+    <UIFigure name='UIFigure'>
+        <Color>[0.96 0.97 0.98]</Color>
+        <Name>'Flight Sensor Package Demo'</Name>
+        <Position>[80 80 1180 720]</Position>
+        <Children>
+            <GridLayout name='MainGrid'>
+                <ColumnSpacing>12</ColumnSpacing>
+                <ColumnWidth>{290, '1x'}</ColumnWidth>
+                <Padding>[12 12 12 12]</Padding>
+                <RowHeight>{'1x'}</RowHeight>
+                <Children>
+                    <Panel name='ControlPanel'>
+                        <BackgroundColor>[0.98 0.98 0.98]</BackgroundColor>
+                        <FontWeight>'bold'</FontWeight>
+                        <Layout>
+                            <Column>1</Column>
+                            <Row>1</Row>
+                        </Layout>
+                        <Title>'Workflow'</Title>
+                        <Children>
+                            <GridLayout name='ControlGrid'>
+                                <ColumnWidth>{'1x'}</ColumnWidth>
+                                <Padding>[14 14 14 14]</Padding>
+                                <RowHeight>{'fit', 'fit', 'fit', 'fit', 'fit', 'fit', 'fit', 'fit', 'fit', 'fit', '1x'}</RowHeight>
+                                <RowSpacing>9</RowSpacing>
+                                <Children>
+                                    <Label name='TitleLabel'>
+                                        <FontSize>18</FontSize>
+                                        <FontWeight>'bold'</FontWeight>
+                                        <Layout>
+                                            <Column>1</Column>
+                                            <Row>1</Row>
+                                        </Layout>
+                                        <Text>'Aircraft sensor review'</Text>
+                                        <WordWrap>'on'</WordWrap>
+                                    </Label>
+                                    <Label name='FileLabel'>
+                                        <FontColor>[0.35 0.35 0.35]</FontColor>
+                                        <Layout>
+                                            <Column>1</Column>
+                                            <Row>2</Row>
+                                        </Layout>
+                                        <Text>'File: not loaded'</Text>
+                                        <WordWrap>'on'</WordWrap>
+                                    </Label>
+                                    <Button name='LoadDataButton'>
+                                        <ButtonPushedFcn>LoadDataButtonPushed</ButtonPushedFcn>
+                                        <Layout>
+                                            <Column>1</Column>
+                                            <Row>5</Row>
+                                        </Layout>
+                                        <Text>'Load Data'</Text>
+                                    </Button>
+                                    <Label name='DataFileEditFieldLabel'>
+                                        <FontWeight>'bold'</FontWeight>
+                                        <Layout>
+                                            <Column>1</Column>
+                                            <Row>3</Row>
+                                        </Layout>
+                                        <Text>'Data file'</Text>
+                                    </Label>
+                                    <EditField name='DataFileEditField'>
+                                        <Layout>
+                                            <Column>1</Column>
+                                            <Row>4</Row>
+                                        </Layout>
+                                    </EditField>
+                                    <Button name='SelectDataButton'>
+                                        <ButtonPushedFcn>SelectDataButtonPushed</ButtonPushedFcn>
+                                        <Layout>
+                                            <Column>1</Column>
+                                            <Row>6</Row>
+                                        </Layout>
+                                        <Text>'Select File...'</Text>
+                                    </Button>
+                                    <Button name='PlotDataButton'>
+                                        <ButtonPushedFcn>PlotDataButtonPushed</ButtonPushedFcn>
+                                        <Layout>
+                                            <Column>1</Column>
+                                            <Row>7</Row>
+                                        </Layout>
+                                        <Text>'Plot Data'</Text>
+                                    </Button>
+                                    <Button name='CleanDataButton'>
+                                        <ButtonPushedFcn>CleanDataButtonPushed</ButtonPushedFcn>
+                                        <Layout>
+                                            <Column>1</Column>
+                                            <Row>8</Row>
+                                        </Layout>
+                                        <Text>'Clean Data'</Text>
+                                    </Button>
+                                    <Button name='ExploreDataButton'>
+                                        <ButtonPushedFcn>ExploreDataButtonPushed</ButtonPushedFcn>
+                                        <Layout>
+                                            <Column>1</Column>
+                                            <Row>9</Row>
+                                        </Layout>
+                                        <Text>'Explore Data'</Text>
+                                    </Button>
+                                    <Button name='FitModelButton'>
+                                        <ButtonPushedFcn>FitModelButtonPushed</ButtonPushedFcn>
+                                        <Layout>
+                                            <Column>1</Column>
+                                            <Row>10</Row>
+                                        </Layout>
+                                        <Text>'Fit Virtual Sensor Model'</Text>
+                                    </Button>
+                                    <Label name='StatusLabel'>
+                                        <FontColor>[0.25 0.25 0.25]</FontColor>
+                                        <Layout>
+                                            <Column>1</Column>
+                                            <Row>11</Row>
+                                        </Layout>
+                                        <Text>'Loading local sample data...'</Text>
+                                        <WordWrap>'on'</WordWrap>
+                                    </Label>
+                                </Children>
+                            </GridLayout>
+                        </Children>
+                    </Panel>
+                    <TabGroup name='ResultsTabGroup'>
+                        <Layout>
+                            <Column>2</Column>
+                            <Row>1</Row>
+                        </Layout>
+                        <Children>
+                            <Tab name='DataTab'>
+                                <Title>'Data'</Title>
+                                <Children>
+                                    <GridLayout name='DataGrid'>
+                                        <ColumnWidth>{'1x'}</ColumnWidth>
+                                        <Padding>[8 8 8 8]</Padding>
+                                        <RowHeight>{'1x'}</RowHeight>
+                                        <Children>
+                                            <Table name='DataTable'>
+                                                <Layout>
+                                                    <Column>1</Column>
+                                                    <Row>1</Row>
+                                                </Layout>
+                                            </Table>
+                                        </Children>
+                                    </GridLayout>
+                                </Children>
+                            </Tab>
+                            <Tab name='PlotTab'>
+                                <Title>'Plot'</Title>
+                                <Children>
+                                    <GridLayout name='PlotGrid'>
+                                        <ColumnWidth>{'1x'}</ColumnWidth>
+                                        <Padding>[8 8 8 8]</Padding>
+                                        <RowHeight>{'1x'}</RowHeight>
+                                        <Children>
+                                            <UIAxes name='MainAxes'>
+                                                <Box>'on'</Box>
+                                                <Layout>
+                                                    <Column>1</Column>
+                                                    <Row>1</Row>
+                                                </Layout>
+                                                <XGrid>'on'</XGrid>
+                                                <YGrid>'on'</YGrid>
+                                            </UIAxes>
+                                        </Children>
+                                    </GridLayout>
+                                </Children>
+                            </Tab>
+                            <Tab name='ChartTab'>
+                                <Title>'Explore'</Title>
+                                <Children>
+                                    <GridLayout name='ChartGrid'>
+                                        <ColumnWidth>{'1x'}</ColumnWidth>
+                                        <Padding>[8 8 8 8]</Padding>
+                                        <RowHeight>{'fit', '1x', 'fit'}</RowHeight>
+                                        <RowSpacing>8</RowSpacing>
+                                        <Children>
+                                            <UIAxes name='ExploreAxes'>
+                                                <Box>'on'</Box>
+                                                <Layout>
+                                                    <Column>1</Column>
+                                                    <Row>2</Row>
+                                                </Layout>
+                                                <XGrid>'on'</XGrid>
+                                                <YGrid>'on'</YGrid>
+                                            </UIAxes>
+                                            <GridLayout name='ExploreControlGrid'>
+                                                <ColumnSpacing>8</ColumnSpacing>
+                                                <ColumnWidth>{90, 260, '1x'}</ColumnWidth>
+                                                <Layout>
+                                                    <Column>1</Column>
+                                                    <Row>1</Row>
+                                                </Layout>
+                                                <Padding>[0 0 0 0]</Padding>
+                                                <RowHeight>{'fit', 'fit'}</RowHeight>
+                                                <RowSpacing>6</RowSpacing>
+                                                <Children>
+                                                    <Label name='PlotTypeLabel'>
+                                                        <FontWeight>'bold'</FontWeight>
+                                                        <Layout>
+                                                            <Column>1</Column>
+                                                            <Row>1</Row>
+                                                        </Layout>
+                                                        <Text>'Plot type'</Text>
+                                                    </Label>
+                                                    <DropDown name='PlotTypeDropDown'>
+                                                        <Items>{'Relationship', 'Trend', 'Prediction check'}</Items>
+                                                        <Layout>
+                                                            <Column>2</Column>
+                                                            <Row>1</Row>
+                                                        </Layout>
+                                                        <Value>'Relationship'</Value>
+                                                        <ValueChangedFcn>PlotTypeDropDownValueChanged</ValueChangedFcn>
+                                                    </DropDown>
+                                                    <Label name='XVariableLabel'>
+                                                        <FontWeight>'bold'</FontWeight>
+                                                        <Layout>
+                                                            <Column>1</Column>
+                                                            <Row>2</Row>
+                                                        </Layout>
+                                                        <Text>'Predictor'</Text>
+                                                    </Label>
+                                                    <DropDown name='XVariableDropDown'>
+                                                        <Items>{'FanSpeed', 'FuelFlow', 'Altitude', 'ExhaustTemperature'}</Items>
+                                                        <Layout>
+                                                            <Column>2</Column>
+                                                            <Row>2</Row>
+                                                        </Layout>
+                                                        <Value>'Altitude'</Value>
+                                                        <ValueChangedFcn>XVariableDropDownValueChanged</ValueChangedFcn>
+                                                    </DropDown>
+                                                </Children>
+                                            </GridLayout>
+                                            <Label name='ExploreSummaryLabel'>
+                                                <FontColor>[0.25 0.25 0.25]</FontColor>
+                                                <Layout>
+                                                    <Column>1</Column>
+                                                    <Row>3</Row>
+                                                </Layout>
+                                                <Text>'Choose a plot type to explore the flight data.'</Text>
+                                                <WordWrap>'on'</WordWrap>
+                                            </Label>
+                                        </Children>
+                                    </GridLayout>
+                                </Children>
+                            </Tab>
+                            <Tab name='ModelTab'>
+                                <Title>'Virtual Sensor'</Title>
+                                <Children>
+                                    <GridLayout name='ModelGrid'>
+                                        <ColumnWidth>{'1x'}</ColumnWidth>
+                                        <Padding>[8 8 8 8]</Padding>
+                                        <RowHeight>{'1x', 'fit'}</RowHeight>
+                                        <RowSpacing>8</RowSpacing>
+                                        <Children>
+                                            <UIAxes name='ModelAxes'>
+                                                <Box>'on'</Box>
+                                                <Layout>
+                                                    <Column>1</Column>
+                                                    <Row>1</Row>
+                                                </Layout>
+                                                <XGrid>'on'</XGrid>
+                                                <YGrid>'on'</YGrid>
+                                            </UIAxes>
+                                            <Label name='ModelSummaryLabel'>
+                                                <FontColor>[0.25 0.25 0.25]</FontColor>
+                                                <Layout>
+                                                    <Column>1</Column>
+                                                    <Row>2</Row>
+                                                </Layout>
+                                                <Text>'Fit the virtual sensor to compare measured and predicted true airspeed.'</Text>
+                                                <WordWrap>'on'</WordWrap>
+                                            </Label>
+                                        </Children>
+                                    </GridLayout>
+                                </Children>
+                            </Tab>
+                        </Children>
+                    </TabGroup>
+                </Children>
+            </GridLayout>
+        </Children>
+    </UIFigure>
+    <RunConfiguration>
+        <StartupFcn>startupFcn</StartupFcn>
+    </RunConfiguration>
+    <AppDetails>
+        <Name>FlightSensorApp</Name>
+        <Version>1.0</Version>
+    </AppDetails>
+    <InternalData>
+        <AppId>de2ea148-ff2f-f7c2-6ecf-a0deacb6a2b0</AppId>
+    </InternalData>
+    <!-- Thumbnail is used by file previewers. To change how the thumbnail is captured or stored, use the App Details dialog box in App Designer. -->
+    <Thumbnail autoCapture='true'>data:image/jpg;base64,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</Thumbnail>
+</MATLABApp>

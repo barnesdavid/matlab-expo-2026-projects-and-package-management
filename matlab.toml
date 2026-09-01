@@ -1,0 +1,49 @@
+name = "FlightSensorPackageDemo"
+
+[folders]
+path = ["apps", "src", "data", "examples"]
+test = ["tests"]
+
+[dependencies]
+# File Exchange package kept for the package-management workshop step.
+chart_examples = {version = "*", id = "d47c73c1-4864-4beb-93d4-9642d80fcb1b"}
+
+[project]
+summary = "R2026b MATLAB Project demo for File Exchange package dependencies."
+shortcuts = {"Open flight sensor app" = {path = "apps/FlightSensorApp.m"}}
+
+[[package]]
+configuration-name = "Package1"
+unique-id = "23fbb47e-da87-49f5-a5d5-b0a638ae0748"
+output-file-name = "MyPackage.mltbx"
+output-folder = "Package1/release"
+name = "MyPackage"
+supported-platforms = [
+    "windows",
+    "linux",
+    "macos",
+]
+display-name = "My Package"
+version = "1.1.0"
+id = "3718acc6-57ca-476b-b029-10ee4dea58a6"
+use-license-bsd = false
+lastAccessed = "1788270930090"
+
+[[package]]
+configuration-name = "Package2"
+unique-id = "af41e315-8369-470a-a311-7be9a9575b44"
+output-file-name = "MyPackage.mltbx"
+output-folder = "Package2/release"
+name = "MyPackage"
+supported-platforms = [
+    "windows",
+    "linux",
+    "macos",
+]
+display-name = "My Package"
+version = "1.0.0"
+id = "a6d7d581-ac7b-4f94-98cd-d15fefe74c99"
+use-license-bsd = false
+lastAccessed = "1788270926119"
+package-root = "src"
+

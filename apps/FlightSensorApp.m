@@ -187,7 +187,7 @@ classdef FlightSensorApp < matlab.apps.App
                     app.XVariableDropDown.Value = 'Altitude';
                     app.XVariableDropDown.Enable = "on";
                     app.XVariableDropDown.Visible = "on";
-                    app.ExploreSummaryLabel.Text = "Relationship checks whether a predictor has simple structure against true airspeed.";
+                    app.ExploreSummaryLabel.Text = "Relationship shows the observed operating envelope for the selected signal.";
             end
         end
 
@@ -196,6 +196,12 @@ classdef FlightSensorApp < matlab.apps.App
                 delete(app.ExploreChart);
             end
             app.ExploreChart = [];
+
+            % The prediction view uses these axes while File Exchange charts
+            % occupy the same grid cell for the other exploration modes.
+            cla(app.ExploreAxes);
+            legend(app.ExploreAxes, "off");
+            colorbar(app.ExploreAxes, "off");
         end
 
         function showExploreAxes(app)
@@ -204,10 +210,9 @@ classdef FlightSensorApp < matlab.apps.App
         end
 
         function correlationValue = renderRelationshipChart(app, data, xVariable)
-            app.clearExploreChart();
-            app.ExploreAxes.Visible = "off";
+            app.showExploreAxes();
 
-            rows = sampleFlightRows(height(data), 700);
+            rows = sampleFlightRows(height(data), 1400);
             x = data.(xVariable)(rows);
             y = data.TrueAirSpeed(rows);
             validRows = isfinite(x) & isfinite(y);
@@ -215,24 +220,25 @@ classdef FlightSensorApp < matlab.apps.App
             y = y(validRows);
             correlationValue = app.linearCorrelation(x, y);
 
-            app.ExploreChart = ScatterFitChart("Parent", app.ChartGrid, ...
-                "XData", x, ...
-                "YData", y, ...
-                "SizeData", 20, ...
-                "Marker", "o", ...
-                "LineColor", [0.74 0.23 0.16], ...
-                "LineWidth", 2.2, ...
-                "Controls", "off");
-            app.ExploreChart.Layout.Row = 2;
-            app.ExploreChart.Layout.Column = 1;
-            app.ExploreChart.LineVisible = abs(correlationValue) >= 0.7;
+            scatter(app.ExploreAxes, x, y, 20, ...
+                MarkerEdgeColor=[0.00 0.45 0.74], ...
+                MarkerFaceColor="none", ...
+                MarkerEdgeAlpha=0.52);
 
-            legend(app.ExploreChart, "off");
-            grid(app.ExploreChart, "on");
-            axis(app.ExploreChart, "padded");
-            title(app.ExploreChart, app.getVariableLabel(xVariable) + " vs. true airspeed");
-            xlabel(app.ExploreChart, app.getVariableLabel(xVariable) + app.getVariableUnits(xVariable));
-            ylabel(app.ExploreChart, "True airspeed (knots)");
+            [sortedX, sortOrder] = sort(x);
+            sortedY = y(sortOrder);
+            smoothingWindow = max(25, round(numel(sortedX) / 30));
+            hold(app.ExploreAxes, "on");
+            plot(app.ExploreAxes, sortedX, ...
+                smoothdata(sortedY, "movmedian", smoothingWindow), ...
+                LineWidth=2.6, Color=[0.78 0.25 0.12]);
+            hold(app.ExploreAxes, "off");
+
+            grid(app.ExploreAxes, "on");
+            app.ExploreAxes.Box = "on";
+            title(app.ExploreAxes, app.getVariableLabel(xVariable) + " and true airspeed");
+            xlabel(app.ExploreAxes, app.getVariableLabel(xVariable) + app.getVariableUnits(xVariable));
+            ylabel(app.ExploreAxes, "True airspeed (knots)");
         end
 
         function renderTrendChart(app, data, yVariable)
@@ -279,13 +285,8 @@ classdef FlightSensorApp < matlab.apps.App
             else
                 xVariable = string(app.XVariableDropDown.Value);
                 correlationValue = app.renderRelationshipChart(data, xVariable);
-                if abs(correlationValue) >= 0.7
-                    app.ExploreSummaryLabel.Text = sprintf("File Exchange relationship: %s has r = %.2f with true airspeed on cleaned flight rows.", ...
-                        app.getVariableLabel(xVariable), correlationValue);
-                else
-                    app.ExploreSummaryLabel.Text = sprintf("File Exchange relationship: %s has r = %.2f, so it is not a useful one-variable virtual-sensor candidate.", ...
-                        app.getVariableLabel(xVariable), correlationValue);
-                end
+                app.ExploreSummaryLabel.Text = sprintf("Observed operating relationship: %s has r = %.2f with true airspeed. The red curve is a rolling median, not a model fit.", ...
+                    app.getVariableLabel(xVariable), correlationValue);
             end
 
             app.ResultsTabGroup.SelectedTab = app.ChartTab;

@@ -5,13 +5,6 @@ classdef testFlightSensorApp < matlab.uitest.TestCase
         App
     end
 
-    methods (TestClassSetup)
-        function openDemoProject(~)
-            projectFolder = fileparts(fileparts(mfilename("fullpath")));
-            openProject(projectFolder, Prompt=false);
-        end
-    end
-
     methods (TestMethodSetup)
         function launchApp(testCase)
             testCase.App = FlightSensorApp;
@@ -46,9 +39,16 @@ classdef testFlightSensorApp < matlab.uitest.TestCase
 
             press(testCase, app.ExploreDataButton);
             testCase.verifyEqual(app.ResultsTabGroup.SelectedTab, app.ChartTab);
+            testCase.verifyGreaterThanOrEqual(numel(findobj(app.ExploreAxes, 'Type', 'Line')), 1);
+            testCase.verifySubstring(app.ExploreSummaryLabel.Text, 'rolling median');
+
+            choose(testCase, app.PlotTypeDropDown, 'Prediction check');
+            testCase.verifyGreaterThanOrEqual(numel(findobj(app.ExploreAxes, 'Type', 'Line')), 2);
+
+            choose(testCase, app.PlotTypeDropDown, 'Trend');
+            testCase.verifyEmpty(findobj(app.ExploreAxes, 'Type', 'Line'));
             childClasses = arrayfun(@class, app.ChartGrid.Children, UniformOutput=false);
-            testCase.verifyTrue(any(strcmp(childClasses, 'ScatterFitChart')));
-            testCase.verifySubstring(app.ExploreSummaryLabel.Text, 'Altitude has r = 0.90');
+            testCase.verifyTrue(any(strcmp(childClasses, 'LineGradientChart')));
         end
     end
 end

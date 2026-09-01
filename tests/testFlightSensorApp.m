@@ -39,8 +39,8 @@ classdef testFlightSensorApp < matlab.uitest.TestCase
 
             press(testCase, app.ExploreDataButton);
             testCase.verifyEqual(app.ResultsTabGroup.SelectedTab, app.ChartTab);
-            testCase.verifyNotEmpty(findall(app.ChartGrid, 'Type', 'scatterfitchart'));
-            testCase.verifySubstring(app.ExploreSummaryLabel.Text, 'ScatterFitChart screen');
+            testCase.verifyNotEmpty(findall(app.ChartGrid, 'Type', 'scatterdensitychart'));
+            testCase.verifySubstring(app.ExploreSummaryLabel.Text, 'ScatterDensityChart screen');
 
             choose(testCase, app.PlotTypeDropDown, 'Prediction check');
             testCase.verifyGreaterThanOrEqual(numel(findobj(app.ExploreAxes, 'Type', 'Line')), 2);

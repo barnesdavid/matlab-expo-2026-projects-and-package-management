@@ -55,6 +55,7 @@ classdef FlightSensorApp < matlab.apps.App
         TrendSignalNames string = ["TrueAirSpeed", "Altitude", "FuelFlow", "FanSpeed", ...
             "OilPressure", "OilTemperature", "ExhaustTemperature", "WindSpeed"]
         ExploreChart = []
+        ChartExamplesAvailable (1,1) logical = false
     end
 
     properties (Access = public)
@@ -163,6 +164,23 @@ classdef FlightSensorApp < matlab.apps.App
             app.XVariableDropDown.Items = cellstr(app.PredictorNames);
             app.XVariableDropDown.Value = 'Altitude';
             app.updateExploreControlState();
+        end
+
+        function updateChartExamplesButton(app)
+            try
+                packageInfo = mpmlist("chart_examples");
+                app.ChartExamplesAvailable = ~isempty(packageInfo) && packageInfo.Installed;
+            catch
+                app.ChartExamplesAvailable = false;
+            end
+
+            if app.ChartExamplesAvailable
+                app.ExploreDataButton.Text = "Explore Data";
+                app.ExploreDataButton.FontColor = [0 0 0];
+            else
+                app.ExploreDataButton.Text = "Package Missing: Chart Examples";
+                app.ExploreDataButton.FontColor = [0.75 0.10 0.10];
+            end
         end
 
         function updateExploreControlState(app)
@@ -361,6 +379,7 @@ classdef FlightSensorApp < matlab.apps.App
         % Code that executes after component creation
         function startupFcn(app)
             app.configureExploreControls();
+            app.updateChartExamplesButton();
             app.ModelSummaryLabel.Text = "Fit the virtual sensor to compare measured and predicted true airspeed.";
 
             defaultFile = "FlightData.xlsx";
@@ -428,6 +447,11 @@ classdef FlightSensorApp < matlab.apps.App
         % Button pushed function: ExploreDataButton
         function ExploreDataButtonPushed(app, event)
             try
+                app.updateChartExamplesButton();
+                if ~app.ChartExamplesAvailable
+                    error("flightDemo:MissingChartExamples", ...
+                        "Install the chart_examples project dependency to explore package charts.");
+                end
                 app.renderExploreData();
                 app.setStatus("Opened the data exploration view.");
             catch exception

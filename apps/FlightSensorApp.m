@@ -188,7 +188,7 @@ classdef FlightSensorApp < matlab.apps.App
                     app.XVariableDropDown.Value = 'Altitude';
                     app.XVariableDropDown.Enable = "on";
                     app.XVariableDropDown.Visible = "on";
-                    app.ExploreSummaryLabel.Text = "Relationship uses ScatterDensityChart to show where flight operating points concentrate.";
+                    app.ExploreSummaryLabel.Text = "Relationship uses ScatterFitChart to screen a predictor against true airspeed.";
             end
         end
 
@@ -221,28 +221,28 @@ classdef FlightSensorApp < matlab.apps.App
         function correlationValue = renderRelationshipChart(app, data, xVariable)
             chartHost = app.preparePackageChartHost();
 
-            rows = sampleFlightRows(height(data), 500);
+            rows = sampleFlightRows(height(data), 700);
             x = data.(xVariable)(rows);
             y = data.TrueAirSpeed(rows);
             validRows = isfinite(x) & isfinite(y);
             x = x(validRows);
             y = y(validRows);
             correlationValue = app.linearCorrelation(x, y);
-            densityRadius = 0.04 * hypot(range(x), range(y));
 
-            app.ExploreChart = ScatterDensityChart("Parent", chartHost, ...
+            app.ExploreChart = ScatterFitChart("Parent", chartHost, ...
                 "XData", x, ...
                 "YData", y, ...
-                "Radius", densityRadius, ...
-                "SizeData", 24, ...
+                "SizeData", 20, ...
                 "Marker", "o", ...
-                "DensityMethod", "noboundary");
-            colormap(app.ExploreChart, turbo(256));
+                "LineColor", [0.74 0.23 0.16], ...
+                "LineWidth", 2.2, ...
+                "Controls", "off");
+            app.ExploreChart.LineVisible = abs(correlationValue) >= 0.7;
+
+            legend(app.ExploreChart, "off");
             grid(app.ExploreChart, "on");
             axis(app.ExploreChart, "padded");
-            relationshipColorbar = colorbar(app.ExploreChart);
-            relationshipColorbar.Label.String = "Local point density";
-            title(app.ExploreChart, app.getVariableLabel(xVariable) + " and true airspeed");
+            title(app.ExploreChart, app.getVariableLabel(xVariable) + " vs. true airspeed");
             xlabel(app.ExploreChart, app.getVariableLabel(xVariable) + app.getVariableUnits(xVariable));
             ylabel(app.ExploreChart, "True airspeed (knots)");
         end
@@ -291,7 +291,7 @@ classdef FlightSensorApp < matlab.apps.App
             else
                 xVariable = string(app.XVariableDropDown.Value);
                 correlationValue = app.renderRelationshipChart(data, xVariable);
-                app.ExploreSummaryLabel.Text = sprintf("ScatterDensityChart screen: %s has r = %.2f with true airspeed on cleaned flight rows.", ...
+                app.ExploreSummaryLabel.Text = sprintf("ScatterFitChart screen: %s has r = %.2f with true airspeed on cleaned flight rows.", ...
                     app.getVariableLabel(xVariable), correlationValue);
             end
         end

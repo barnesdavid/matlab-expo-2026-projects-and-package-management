@@ -311,7 +311,6 @@ classdef FlightSensorApp < matlab.apps.App
                 "LineColor", [0.74 0.23 0.16], ...
                 "LineWidth", 2.2, ...
                 "Controls", "off");
-            app.ExploreChart.LineVisible = abs(correlationValue) >= 0.7;
 
             legend(app.ExploreChart, "off");
             grid(app.ExploreChart, "on");

@@ -37,7 +37,8 @@ classdef testFlightSensorApp < matlab.uitest.TestCase
             press(testCase, app.CleanDataButton);
             testCase.verifySubstring(app.StatusLabel.Text, 'Cleaned');
 
-            press(testCase, app.ExploreDataButton);
+            exploreButton = findobj(app.UIFigure, 'Type', 'uibutton', 'Text', 'Explore Data');
+            press(testCase, exploreButton);
             testCase.verifyEqual(app.ResultsTabGroup.SelectedTab, app.ChartTab);
             testCase.verifyNotEmpty(findall(app.ChartGrid, 'Type', 'scatterfitchart'));
             testCase.verifySubstring(app.ExploreSummaryLabel.Text, 'ScatterFitChart screen');

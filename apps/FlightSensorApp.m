@@ -62,6 +62,8 @@ classdef FlightSensorApp < matlab.apps.App
             "OilPressure", "OilTemperature", "ExhaustTemperature", "WindSpeed"]
         ExploreChart = []
         ChartExamplesAvailable (1,1) logical = false
+        ExploreActionButton matlab.ui.control.Button
+        InstallChartsPanel = []
     end
 
     properties (Access = public)
@@ -183,16 +185,58 @@ classdef FlightSensorApp < matlab.apps.App
             if app.ChartExamplesAvailable
                 app.ChartGrid.Visible = "on";
                 app.InstallChartsGrid.Visible = "off";
-                app.ExploreDataButton.Text = "Explore Data";
-                app.ExploreDataButton.FontColor = [0 0 0];
-                app.ExploreDataButton.FontSize = 12;
+                app.clearInstallChartsPanel();
+                app.ExploreActionButton.Text = "Explore Data";
+                app.ExploreActionButton.FontColor = [0 0 0];
+                app.ExploreActionButton.FontSize = 12;
             else
                 app.ChartGrid.Visible = "off";
-                app.InstallChartsGrid.Visible = "on";
-                app.ExploreDataButton.Text = "Package Missing: Chart Examples";
-                app.ExploreDataButton.FontColor = [0.75 0.10 0.10];
-                app.ExploreDataButton.FontSize = 12;
+                app.InstallChartsGrid.Visible = "off";
+                app.showInstallChartsPanel();
+                app.ExploreActionButton.Text = "Package Missing: Chart Examples";
+                app.ExploreActionButton.FontColor = [0.75 0.10 0.10];
+                app.ExploreActionButton.FontSize = 12;
             end
+        end
+
+        function createExploreActionButton(app)
+            app.ExploreDataButton.Visible = "off";
+            app.ExploreActionButton = uibutton(app.ControlGrid, ...
+                ButtonPushedFcn=@(~, event) app.ExploreDataButtonPushed(event));
+            app.ExploreActionButton.Layout.Row = 9;
+            app.ExploreActionButton.Layout.Column = 1;
+        end
+
+        function showInstallChartsPanel(app)
+            if ~isempty(app.InstallChartsPanel) && isvalid(app.InstallChartsPanel)
+                app.InstallChartsPanel.Visible = "on";
+                return
+            end
+
+            app.InstallChartsPanel = uipanel(app.ChartTab, ...
+                BorderType="none", Units="normalized", Position=[0 0 1 1]);
+            uilabel(app.InstallChartsPanel, ...
+                Text="Install in MATLAB", FontSize=18, FontWeight="bold", ...
+                Units="normalized", Position=[0.25 0.55 0.50 0.06]);
+            uieditfield(app.InstallChartsPanel, "text", ...
+                Value="mpminstall chart_examples", Editable="off", ...
+                FontName="Consolas", FontSize=14, ...
+                Units="normalized", Position=[0.25 0.48 0.43 0.06]);
+            uibutton(app.InstallChartsPanel, ...
+                Text="Copy", BackgroundColor=[0 0.45 0.74], ...
+                FontColor=[1 1 1], Units="normalized", ...
+                Position=[0.69 0.48 0.08 0.06], ...
+                ButtonPushedFcn=@(~, event) app.CopyInstallCommandButtonPushed(event));
+            uilabel(app.InstallChartsPanel, ...
+                Text="Requires R2026b and later.", FontColor=[0.35 0.35 0.35], ...
+                Units="normalized", Position=[0.25 0.41 0.50 0.05]);
+        end
+
+        function clearInstallChartsPanel(app)
+            if ~isempty(app.InstallChartsPanel) && isvalid(app.InstallChartsPanel)
+                delete(app.InstallChartsPanel);
+            end
+            app.InstallChartsPanel = [];
         end
 
         function updateExploreControlState(app)
@@ -391,6 +435,7 @@ classdef FlightSensorApp < matlab.apps.App
         % Code that executes after component creation
         function startupFcn(app)
             app.configureExploreControls();
+            app.createExploreActionButton();
             app.updateChartExamplesButton();
             app.ModelSummaryLabel.Text = "Fit the virtual sensor to compare measured and predicted true airspeed.";
 

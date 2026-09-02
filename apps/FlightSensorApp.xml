@@ -93,13 +93,13 @@
                                     </Button>
                                     <Button name='ExploreDataButton'>
                                         <ButtonPushedFcn>ExploreDataButtonPushed</ButtonPushedFcn>
-                                        <FontColor>[0.75 0.10 0.10]</FontColor>
+                                        <FontColor>[0 0 0]</FontColor>
                                         <FontSize>12</FontSize>
                                         <Layout>
                                             <Column>1</Column>
                                             <Row>9</Row>
                                         </Layout>
-                                        <Text>'Package Missing: Chart Examples'</Text>
+                                        <Text>'Explore Data'</Text>
                                     </Button>
                                     <Button name='FitModelButton'>
                                         <ButtonPushedFcn>FitModelButtonPushed</ButtonPushedFcn>
@@ -176,6 +176,7 @@
                                         <Padding>[24 24 24 24]</Padding>
                                         <RowHeight>{'1x', 'fit', 'fit', 'fit', '1x'}</RowHeight>
                                         <RowSpacing>10</RowSpacing>
+                                        <Visible>'off'</Visible>
                                         <Children>
                                             <Label name='InstallTitleLabel'>
                                                 <FontSize>18</FontSize>

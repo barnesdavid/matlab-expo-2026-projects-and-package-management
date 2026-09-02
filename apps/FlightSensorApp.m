@@ -185,9 +185,11 @@ classdef FlightSensorApp < matlab.apps.App
             if app.ChartExamplesAvailable
                 app.ExploreDataButton.Text = "Explore Data";
                 app.ExploreDataButton.FontColor = [0 0 0];
+                app.ExploreDataButton.FontSize = 12;
             else
-                app.ExploreDataButton.Text = "Package Missing: Chart Examples";
+                app.ExploreDataButton.Text = "Install the chart_examples to use explore charts.";
                 app.ExploreDataButton.FontColor = [0.75 0.10 0.10];
+                app.ExploreDataButton.FontSize = 10;
             end
         end
 

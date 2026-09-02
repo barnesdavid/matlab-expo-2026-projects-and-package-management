@@ -18,6 +18,12 @@ classdef FlightSensorApp < matlab.apps.App
         MainAxes                        matlab.ui.control.UIAxes
         ChartTab                        matlab.ui.container.Tab
         ChartGrid                       matlab.ui.container.GridLayout
+        InstallChartsGrid               matlab.ui.container.GridLayout
+        InstallCommandGrid              matlab.ui.container.GridLayout
+        InstallDescriptionLabel         matlab.ui.control.Label
+        InstallTitleLabel               matlab.ui.control.Label
+        CopyInstallCommandButton        matlab.ui.control.Button
+        InstallCommandEditField         matlab.ui.control.EditField
         ExploreSummaryLabel             matlab.ui.control.Label
         ExploreControlGrid              matlab.ui.container.GridLayout
         XVariableDropDown               matlab.ui.control.DropDown
@@ -183,10 +189,14 @@ classdef FlightSensorApp < matlab.apps.App
             end
 
             if app.ChartExamplesAvailable
+                app.ChartGrid.Visible = "on";
+                app.InstallChartsGrid.Visible = "off";
                 app.ExploreDataButton.Text = "Explore Data";
                 app.ExploreDataButton.FontColor = [0 0 0];
                 app.ExploreDataButton.FontSize = 12;
             else
+                app.ChartGrid.Visible = "off";
+                app.InstallChartsGrid.Visible = "on";
                 app.ExploreDataButton.Text = "Package Missing: Chart Examples";
                 app.ExploreDataButton.FontColor = [0.75 0.10 0.10];
                 app.ExploreDataButton.FontSize = 12;
@@ -459,8 +469,9 @@ classdef FlightSensorApp < matlab.apps.App
             try
                 app.updateChartExamplesButton();
                 if ~app.ChartExamplesAvailable
-                    error("flightDemo:MissingChartExamples", ...
-                        "Install the chart_examples to use explore charts.");
+                    app.ResultsTabGroup.SelectedTab = app.ChartTab;
+                    app.setStatus("Install chart_examples to enable the Explore charts.");
+                    return
                 end
                 app.renderExploreData();
                 app.setStatus("Opened the data exploration view.");
@@ -505,6 +516,12 @@ classdef FlightSensorApp < matlab.apps.App
             catch exception
                 app.reportError("Unable to fit virtual sensor", exception);
             end
+        end
+
+        % Button pushed function: CopyInstallCommandButton
+        function CopyInstallCommandButtonPushed(app, event)
+            clipboard("copy", "mpminstall chart_examples");
+            app.setStatus("Copied mpminstall chart_examples to the clipboard.");
         end
     end
 

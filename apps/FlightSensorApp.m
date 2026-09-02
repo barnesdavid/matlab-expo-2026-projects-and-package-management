@@ -187,9 +187,9 @@ classdef FlightSensorApp < matlab.apps.App
                 app.ExploreDataButton.FontColor = [0 0 0];
                 app.ExploreDataButton.FontSize = 12;
             else
-                app.ExploreDataButton.Text = "Install the chart_examples to use explore charts.";
+                app.ExploreDataButton.Text = "Package Missing: Chart Examples";
                 app.ExploreDataButton.FontColor = [0.75 0.10 0.10];
-                app.ExploreDataButton.FontSize = 10;
+                app.ExploreDataButton.FontSize = 12;
             end
         end
 
@@ -460,7 +460,7 @@ classdef FlightSensorApp < matlab.apps.App
                 app.updateChartExamplesButton();
                 if ~app.ChartExamplesAvailable
                     error("flightDemo:MissingChartExamples", ...
-                        "Install the chart_examples project dependency to explore package charts.");
+                        "Install the chart_examples to use explore charts.");
                 end
                 app.renderExploreData();
                 app.setStatus("Opened the data exploration view.");

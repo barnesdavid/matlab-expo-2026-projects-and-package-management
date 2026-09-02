@@ -94,12 +94,12 @@
                                     <Button name='ExploreDataButton'>
                                         <ButtonPushedFcn>ExploreDataButtonPushed</ButtonPushedFcn>
                                         <FontColor>[0.75 0.10 0.10]</FontColor>
-                                        <FontSize>10</FontSize>
+                                        <FontSize>12</FontSize>
                                         <Layout>
                                             <Column>1</Column>
                                             <Row>9</Row>
                                         </Layout>
-                                        <Text>'Install the chart_examples to use explore charts.'</Text>
+                                        <Text>'Package Missing: Chart Examples'</Text>
                                     </Button>
                                     <Button name='FitModelButton'>
                                         <ButtonPushedFcn>FitModelButtonPushed</ButtonPushedFcn>

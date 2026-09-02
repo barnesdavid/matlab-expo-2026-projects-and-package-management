@@ -459,7 +459,6 @@ classdef FlightSensorApp < matlab.apps.App
         % Button pushed function: ExploreDataButton
         function ExploreDataButtonPushed(app, event)
             try
-                app.updateChartExamplesButton();
                 if ~app.ChartExamplesAvailable
                     app.ResultsTabGroup.SelectedTab = app.ChartTab;
                     app.setStatus("Install chart_examples to enable the Explore charts.");

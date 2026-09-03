@@ -21,9 +21,9 @@
                         <Title>'Workflow'</Title>
                         <Children>
                             <GridLayout name='ControlGrid'>
-                                <ColumnWidth>{'1x'}</ColumnWidth>
+                                <ColumnWidth>{'1x', 'fit'}</ColumnWidth>
                                 <Padding>[14 14 14 14]</Padding>
-                                <RowHeight>{'fit', 'fit', 'fit', 'fit', 'fit', 'fit', 'fit', 'fit', 'fit', 'fit', '1x'}</RowHeight>
+                                <RowHeight>{'fit', 'fit', 'fit', 'fit', 'fit', 'fit', 'fit', 'fit', 'fit', '1x'}</RowHeight>
                                 <RowSpacing>9</RowSpacing>
                                 <Children>
                                     <Label name='TitleLabel'>
@@ -48,7 +48,7 @@
                                     <Button name='LoadDataButton'>
                                         <ButtonPushedFcn>LoadDataButtonPushed</ButtonPushedFcn>
                                         <Layout>
-                                            <Column>1</Column>
+                                            <Column>[1 2]</Column>
                                             <Row>5</Row>
                                         </Layout>
                                         <Text>'Load Data'</Text>
@@ -56,7 +56,7 @@
                                     <Label name='DataFileEditFieldLabel'>
                                         <FontWeight>'bold'</FontWeight>
                                         <Layout>
-                                            <Column>1</Column>
+                                            <Column>[1 2]</Column>
                                             <Row>3</Row>
                                         </Layout>
                                         <Text>'Data file'</Text>
@@ -70,24 +70,24 @@
                                     <Button name='SelectDataButton'>
                                         <ButtonPushedFcn>SelectDataButtonPushed</ButtonPushedFcn>
                                         <Layout>
-                                            <Column>1</Column>
-                                            <Row>6</Row>
+                                            <Column>2</Column>
+                                            <Row>4</Row>
                                         </Layout>
                                         <Text>'Select File...'</Text>
                                     </Button>
                                     <Button name='PlotDataButton'>
                                         <ButtonPushedFcn>PlotDataButtonPushed</ButtonPushedFcn>
                                         <Layout>
-                                            <Column>1</Column>
-                                            <Row>7</Row>
+                                            <Column>[1 2]</Column>
+                                            <Row>6</Row>
                                         </Layout>
                                         <Text>'Plot Data'</Text>
                                     </Button>
                                     <Button name='CleanDataButton'>
                                         <ButtonPushedFcn>CleanDataButtonPushed</ButtonPushedFcn>
                                         <Layout>
-                                            <Column>1</Column>
-                                            <Row>8</Row>
+                                            <Column>[1 2]</Column>
+                                            <Row>7</Row>
                                         </Layout>
                                         <Text>'Clean Data'</Text>
                                     </Button>
@@ -95,24 +95,24 @@
                                         <ButtonPushedFcn>ExploreDataButtonPushed</ButtonPushedFcn>
                                         <FontColor>[0 0 0]</FontColor>
                                         <Layout>
-                                            <Column>1</Column>
-                                            <Row>9</Row>
+                                            <Column>[1 2]</Column>
+                                            <Row>8</Row>
                                         </Layout>
                                         <Text>'Explore Data'</Text>
                                     </Button>
                                     <Button name='FitModelButton'>
                                         <ButtonPushedFcn>FitModelButtonPushed</ButtonPushedFcn>
                                         <Layout>
-                                            <Column>1</Column>
-                                            <Row>10</Row>
+                                            <Column>[1 2]</Column>
+                                            <Row>9</Row>
                                         </Layout>
                                         <Text>'Fit Virtual Sensor Model'</Text>
                                     </Button>
                                     <Label name='StatusLabel'>
                                         <FontColor>[0.25 0.25 0.25]</FontColor>
                                         <Layout>
-                                            <Column>1</Column>
-                                            <Row>11</Row>
+                                            <Column>[1 2]</Column>
+                                            <Row>10</Row>
                                         </Layout>
                                         <Text>'Loading local sample data...'</Text>
                                         <WordWrap>'on'</WordWrap>

@@ -238,8 +238,8 @@ classdef FlightSensorApp < matlab.apps.App
             app.ExploreDataButton.Visible = "off";
             app.ExploreActionButton = uibutton(app.ControlGrid, ...
                 ButtonPushedFcn=@(~, event) app.ExploreDataButtonPushed(event));
-            app.ExploreActionButton.Layout.Row = 9;
-            app.ExploreActionButton.Layout.Column = 1;
+            app.ExploreActionButton.Layout.Row = 8;
+            app.ExploreActionButton.Layout.Column = [1 2];
         end
 
         function showInstallChartsPanel(app)

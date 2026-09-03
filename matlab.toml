@@ -13,18 +13,19 @@ summary = "R2026b MATLAB Project demo for File Exchange package dependencies."
 shortcuts = {"Open flight sensor app" = {path = "apps/FlightSensorApp.m"}}
 
 [[package]]
-configuration-name = "FlightSensorPackageDemo"
+configuration-name = "AirSpeedVirtualSensorPackage"
 unique-id = "23fbb47e-da87-49f5-a5d5-b0a638ae0748"
-output-file-name = "FlightSensorPackageDemo_1_0_0.mltbx"
+output-file-name = "AirSpeedVirtualSensor_1_0_0.mltbx"
 output-folder = "release"
-name = "FlightSensorPackageDemo"
+name = "AirSpeedVirtualSensor"
 supported-platforms = [
     "windows",
     "linux",
     "macos",
 ]
-display-name = "Flight Sensor Package Demo"
+display-name = "Air Speed Virtual Sensor Model App"
 version = "1.0.0"
 id = "3718acc6-57ca-476b-b029-10ee4dea58a6"
 use-license-bsd = false
 package-root = "."
+

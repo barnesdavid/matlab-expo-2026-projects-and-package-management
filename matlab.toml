@@ -13,37 +13,18 @@ summary = "R2026b MATLAB Project demo for File Exchange package dependencies."
 shortcuts = {"Open flight sensor app" = {path = "apps/FlightSensorApp.m"}}
 
 [[package]]
-configuration-name = "Package1"
+configuration-name = "FlightSensorPackageDemo"
 unique-id = "23fbb47e-da87-49f5-a5d5-b0a638ae0748"
-output-file-name = "MyPackage.mltbx"
-output-folder = "Package1/release"
-name = "MyPackage"
+output-file-name = "FlightSensorPackageDemo_1_0_0.mltbx"
+output-folder = "release"
+name = "FlightSensorPackageDemo"
 supported-platforms = [
     "windows",
     "linux",
     "macos",
 ]
-display-name = "My Package"
-version = "1.1.0"
+display-name = "Flight Sensor Package Demo"
+version = "1.0.0"
 id = "3718acc6-57ca-476b-b029-10ee4dea58a6"
 use-license-bsd = false
-lastAccessed = "1788270930090"
-
-[[package]]
-configuration-name = "Package2"
-unique-id = "af41e315-8369-470a-a311-7be9a9575b44"
-output-file-name = "MyPackage.mltbx"
-output-folder = "Package2/release"
-name = "MyPackage"
-supported-platforms = [
-    "windows",
-    "linux",
-    "macos",
-]
-display-name = "My Package"
-version = "1.0.0"
-id = "a6d7d581-ac7b-4f94-98cd-d15fefe74c99"
-use-license-bsd = false
-lastAccessed = "1788270926119"
-package-root = "src"
-
+package-root = "."

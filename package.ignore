@@ -1,0 +1,11 @@
+% Files excluded from the Flight Sensor Package Demo toolbox.
+tests/
+release/
+buildfile.m
+matlab.toml
+**/*.mltbx
+**/*.asv
+**/*.m~
+**/.git*
+**/.git/
+**/.buildtool/

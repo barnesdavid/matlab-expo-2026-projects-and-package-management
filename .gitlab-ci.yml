@@ -2,7 +2,7 @@ package:
   tags:
     - on-prem
   script:
-    - mw -using Br2026bd matlab -batch "openProject(pwd,Prompt=false); buildtool package"
+    - mw -using Br2026bd matlab -batch "feature('MPMMetadataRepo', 1); mpmAddRepository(matlab.mpm.RepositoryConfiguration('repo-config.json')); openProject(pwd,Prompt=false); buildtool package"
     - |
       $packageFile = "release\AirSpeedVirtualSensor_1_0_0.mltbx"
       $publishUrl = "https://ae-matlab-package-repo.ipws.mathworks.com/v1/packages/publish"

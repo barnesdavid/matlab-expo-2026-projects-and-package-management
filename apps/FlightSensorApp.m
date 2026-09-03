@@ -161,10 +161,8 @@ classdef FlightSensorApp < matlab.apps.App
         end
 
         function configureExploreControls(app)
-            app.PlotTypeDropDown.Items = {'Relationship', 'Trend', 'Prediction check'};
-            app.PlotTypeDropDown.Value = 'Relationship';
-            app.XVariableDropDown.Items = cellstr(app.PredictorNames);
-            app.XVariableDropDown.Value = 'Altitude';
+            app.PlotTypeDropDown.Items = {'Trend', 'Relationship', 'Prediction check'};
+            app.PlotTypeDropDown.Value = 'Trend';
             app.updateExploreControlState();
         end
 

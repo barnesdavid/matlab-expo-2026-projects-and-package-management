@@ -39,15 +39,15 @@ classdef testFlightSensorApp < matlab.uitest.TestCase
             exploreButton = findobj(app.UIFigure, 'Type', 'uibutton', 'Text', 'Explore Data');
             press(testCase, exploreButton);
             testCase.verifyEqual(app.ResultsTabGroup.SelectedTab, app.ChartTab);
+            testCase.verifyNotEmpty(findall(app.ChartGrid, 'Type', 'linegradientchart'));
+            testCase.verifySubstring(app.ExploreSummaryLabel.Text, 'File Exchange trend');
+
+            choose(testCase, app.PlotTypeDropDown, 'Relationship');
             testCase.verifyNotEmpty(findall(app.ChartGrid, 'Type', 'scatterfitchart'));
             testCase.verifySubstring(app.ExploreSummaryLabel.Text, 'ScatterFitChart screen');
 
             choose(testCase, app.PlotTypeDropDown, 'Prediction check');
             testCase.verifyGreaterThanOrEqual(numel(findobj(app.ExploreAxes, 'Type', 'Line')), 2);
-
-            choose(testCase, app.PlotTypeDropDown, 'Trend');
-            testCase.verifyEmpty(findobj(app.ExploreAxes, 'Type', 'Line'));
-            testCase.verifyNotEmpty(findall(app.ChartGrid, 'Type', 'linegradientchart'));
         end
     end
 end

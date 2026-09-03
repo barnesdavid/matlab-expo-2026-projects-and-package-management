@@ -66,6 +66,7 @@
                                             <Column>1</Column>
                                             <Row>4</Row>
                                         </Layout>
+                                        <Value>'FlightData.xlsx'</Value>
                                     </EditField>
                                     <Button name='SelectDataButton'>
                                         <ButtonPushedFcn>SelectDataButtonPushed</ButtonPushedFcn>

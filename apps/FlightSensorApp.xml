@@ -94,7 +94,6 @@
                                     <Button name='ExploreDataButton'>
                                         <ButtonPushedFcn>ExploreDataButtonPushed</ButtonPushedFcn>
                                         <FontColor>[0 0 0]</FontColor>
-                                        <FontSize>12</FontSize>
                                         <Layout>
                                             <Column>1</Column>
                                             <Row>9</Row>

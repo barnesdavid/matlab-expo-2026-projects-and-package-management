@@ -1,11 +1,15 @@
-# Flight Sensor Package Demo
+# Air Speed Virtual Sensor
 
-This is the clean MATLAB Expo demo for MATLAB Projects, File Exchange package
-dependencies, and toolbox packaging in R2026b. It uses a local copy of a NASA
-aircraft sensor dataset and the File Exchange `chart_examples` dependency
-declared in `matlab.toml`.
+This R2026b based MATLAB Project example demonstrates how to declare, resolve, and
+use a File Exchange package dependency. It combines a local NASA aircraft
+sensor dataset with the `chart_examples` package declared in `matlab.toml`.
 
-## Demo Story
+The example is intentionally self-contained: its only external package
+dependency is obtained from File Exchange. It also includes a plaintext App
+Designer app, a plaintext live script, and a toolbox package definition that
+can be built from the same project.
+
+## Overview
 
 An engineering team is reviewing flight telemetry before using true airspeed as a
 virtual sensor target. The app walks through a small, realistic workflow:
@@ -17,19 +21,23 @@ virtual sensor target. The app walks through a small, realistic workflow:
    File Exchange.
 5. Fit a lightweight virtual sensor model for true airspeed.
 
-## Run
+## Open and Run
 
-Open the project folder in MATLAB R2026b. The project resolves the
-`chart_examples` dependency declared in `matlab.toml`. Then run:
+Open the `final-demo` project folder in MATLAB R2026b. MATLAB resolves the
+`chart_examples` dependency declared in `matlab.toml` when the project opens.
+Use the **Open flight sensor app** project shortcut, or run:
 
 ```matlab
 FlightSensorApp
 ```
 
-The app is an App Designer plaintext app:
+The app is stored as plaintext App Designer source:
 
 - `apps/FlightSensorApp.m`
 - `apps/FlightSensorApp.xml`
+
+To review the File Exchange chart components outside the app, open
+`examples/ExploreVirtualSensorWithChartExamples.m`.
 
 ## Explore Options
 
@@ -45,13 +53,13 @@ The Explore tab opens with a flight trend and exposes three views:
 If `chart_examples` is not installed, the app keeps the data-cleaning and model
 workflow available and shows the installation command in the Explore tab.
 
-## Build the Toolbox
+## Build the Package
 
-The project defines one intentional toolbox package:
+The project defines one toolbox package:
 
-- Package name: `FlightSensorPackageDemo`
+- Package name: `AirSpeedVirtualSensor`
 - Version: `1.0.0`
-- Output: `release/FlightSensorPackageDemo_1_0_0.mltbx`
+- Output: `release/AirSpeedVirtualSensor_1_0_0.mltbx`
 - Included content: app, app XML, local dataset, source functions, and live
   script example
 
@@ -61,6 +69,13 @@ Build it from the project root:
 buildtool package
 ```
 
-The generated toolbox contains the demo itself. The File Exchange dependency is
-managed by the source project through `matlab.toml`; users who only install the
-toolbox can use the app's Explore tab to install `chart_examples`.
+The generated toolbox is excluded from source control. The File Exchange
+dependency is managed by the source project through `matlab.toml`; users who
+only install the toolbox can use the app's Explore tab to install
+`chart_examples`.
+
+## Relevant Products
+
+- MATLAB R2026b
+- Statistics and Machine Learning Toolbox
+- File Exchange package: `chart_examples`

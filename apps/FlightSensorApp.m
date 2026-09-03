@@ -17,15 +17,6 @@ classdef FlightSensorApp < matlab.apps.App
         PlotGrid                        matlab.ui.container.GridLayout
         MainAxes                        matlab.ui.control.UIAxes
         ChartTab                        matlab.ui.container.Tab
-        ChartGrid                       matlab.ui.container.GridLayout
-        ExploreSummaryLabel             matlab.ui.control.Label
-        ExploreControlGrid              matlab.ui.container.GridLayout
-        XVariableDropDown               matlab.ui.control.DropDown
-        XVariableLabel                  matlab.ui.control.Label
-        PlotTypeDropDown                matlab.ui.control.DropDown
-        PlotTypeLabel                   matlab.ui.control.Label
-        ExploreAxes                     matlab.ui.control.UIAxes
-        ChartHostPanel                  matlab.ui.container.Panel
         ModelTab                        matlab.ui.container.Tab
         ModelGrid                       matlab.ui.container.GridLayout
         ModelSummaryLabel               matlab.ui.control.Label
@@ -58,6 +49,15 @@ classdef FlightSensorApp < matlab.apps.App
         ChartExamplesAvailable (1,1) logical = false
         ExploreActionButton matlab.ui.control.Button
         InstallChartsPanel = []
+        ChartGrid matlab.ui.container.GridLayout
+        ExploreSummaryLabel matlab.ui.control.Label
+        ExploreControlGrid matlab.ui.container.GridLayout
+        XVariableDropDown matlab.ui.control.DropDown
+        XVariableLabel matlab.ui.control.Label
+        PlotTypeDropDown matlab.ui.control.DropDown
+        PlotTypeLabel matlab.ui.control.Label
+        ExploreAxes matlab.ui.control.UIAxes
+        ChartHostPanel matlab.ui.container.Panel
     end
 
     properties (Access = public)
@@ -550,7 +550,7 @@ classdef FlightSensorApp < matlab.apps.App
             end
         end
 
-        % Value changed function: PlotTypeDropDown
+        % Callback function
         function PlotTypeDropDownValueChanged(app, event)
             try
                 app.updateExploreControlState();
@@ -563,7 +563,7 @@ classdef FlightSensorApp < matlab.apps.App
             end
         end
 
-        % Value changed function: XVariableDropDown
+        % Callback function
         function XVariableDropDownValueChanged(app, event)
             try
                 if app.ResultsTabGroup.SelectedTab == app.ChartTab && ~isempty(app.RawData)
@@ -588,7 +588,7 @@ classdef FlightSensorApp < matlab.apps.App
             end
         end
 
-        % Button pushed function: CopyInstallCommandButton
+        % Callback function
         function CopyInstallCommandButtonPushed(app, event)
             clipboard("copy", "mpminstall chart_examples");
             app.setStatus("Copied mpminstall chart_examples to the clipboard.");

@@ -168,6 +168,51 @@ classdef FlightSensorApp < matlab.apps.App
             app.updateExploreControlState();
         end
 
+        function createExploreTabContent(app)
+            app.ChartGrid = uigridlayout(app.ChartTab, [3 1], ...
+                ColumnWidth={"1x"}, ...
+                Padding=[8 8 8 8], ...
+                RowHeight={"fit", "1x", "fit"}, ...
+                RowSpacing=8);
+
+            app.ExploreControlGrid = uigridlayout(app.ChartGrid, [2 3], ...
+                ColumnSpacing=8, ...
+                ColumnWidth={90, 260, "1x"}, ...
+                Padding=[0 0 0 0], ...
+                RowHeight={"fit", "fit"}, ...
+                RowSpacing=6);
+            app.ExploreControlGrid.Layout.Row = 1;
+
+            app.PlotTypeLabel = uilabel(app.ExploreControlGrid, ...
+                FontWeight="bold", Text="Plot type");
+            app.PlotTypeLabel.Layout.Row = 1;
+            app.PlotTypeLabel.Layout.Column = 1;
+
+            app.PlotTypeDropDown = uidropdown(app.ExploreControlGrid, ...
+                ValueChangedFcn=@(~, event) app.PlotTypeDropDownValueChanged(event));
+            app.PlotTypeDropDown.Layout.Row = 1;
+            app.PlotTypeDropDown.Layout.Column = 2;
+
+            app.XVariableLabel = uilabel(app.ExploreControlGrid, ...
+                FontWeight="bold", Text="Predictor");
+            app.XVariableLabel.Layout.Row = 2;
+            app.XVariableLabel.Layout.Column = 1;
+
+            app.XVariableDropDown = uidropdown(app.ExploreControlGrid, ...
+                ValueChangedFcn=@(~, event) app.XVariableDropDownValueChanged(event));
+            app.XVariableDropDown.Layout.Row = 2;
+            app.XVariableDropDown.Layout.Column = 2;
+
+            app.ChartHostPanel = uipanel(app.ChartGrid, BorderType="none");
+            app.ChartHostPanel.Layout.Row = 2;
+
+            app.ExploreSummaryLabel = uilabel(app.ChartGrid, ...
+                FontColor=[0.25 0.25 0.25], ...
+                Text="Choose a plot type to explore the flight data.", ...
+                WordWrap="on");
+            app.ExploreSummaryLabel.Layout.Row = 3;
+        end
+
         function updateChartExamplesButton(app)
             try
                 packageInfo = mpmlist("chart_examples");
@@ -263,23 +308,23 @@ classdef FlightSensorApp < matlab.apps.App
             end
             app.ExploreChart = [];
 
-            % The prediction view uses these axes while File Exchange charts
-            % occupy the same grid cell for the other exploration modes.
-            cla(app.ExploreAxes);
-            legend(app.ExploreAxes, "off");
-            colorbar(app.ExploreAxes, "off");
+            if ~isempty(app.ExploreAxes) && isvalid(app.ExploreAxes)
+                delete(app.ExploreAxes);
+            end
+            app.ExploreAxes = [];
         end
 
         function showExploreAxes(app)
             app.clearExploreChart();
-            app.ChartHostPanel.Visible = "off";
-            app.ExploreAxes.Visible = "on";
+            app.ExploreAxes = uiaxes(app.ChartHostPanel, ...
+                Position=[0 0 1 1], Units="normalized");
+            app.ExploreAxes.Box = "on";
+            app.ExploreAxes.XGrid = "on";
+            app.ExploreAxes.YGrid = "on";
         end
 
         function chartHost = preparePackageChartHost(app)
             app.clearExploreChart();
-            app.ExploreAxes.Visible = "off";
-            app.ChartHostPanel.Visible = "on";
             chartHost = app.ChartHostPanel;
         end
 
@@ -424,8 +469,9 @@ classdef FlightSensorApp < matlab.apps.App
 
         % Code that executes after component creation
         function startupFcn(app)
-            app.configureExploreControls();
             app.createExploreActionButton();
+            app.createExploreTabContent();
+            app.configureExploreControls();
             app.updateChartExamplesButton();
             app.ModelSummaryLabel.Text = "Fit the virtual sensor to compare measured and predicted true airspeed.";
 

@@ -9,7 +9,6 @@ classdef testFlightSensorApp < matlab.uitest.TestCase
         function launchApp(testCase)
             testCase.App = FlightSensorApp;
             testCase.App.ShowAlerts = false;
-            drawnow;
         end
     end
 

@@ -1,0 +1,20 @@
+package:
+  tags:
+    - on-prem
+  script:
+    - mw -using Br2026bd matlab -batch "openProject(pwd,Prompt=false); buildtool package"
+    - |
+      $packageFile = "release\AirSpeedVirtualSensor_1_0_0.mltbx"
+      $publishUrl = "https://ae-matlab-package-repo.ipws.mathworks.com/v1/packages/publish"
+      $status = curl.exe `
+        --output NUL `
+        --write-out "%{http_code}" `
+        --header "Authorization: Bearer $env:ARTIFACTORY_TOKEN" `
+        --form "file=@$packageFile" `
+        $publishUrl
+      Write-Host "Package publish returned HTTP $status"
+      if ($status -eq "409") { Write-Host "Package version already published; continuing." }
+      elseif ($status -notmatch "^2") { exit 1 }
+  artifacts:
+    paths:
+      - release/*.mltbx

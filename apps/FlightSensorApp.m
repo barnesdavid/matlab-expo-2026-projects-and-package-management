@@ -18,12 +18,6 @@ classdef FlightSensorApp < matlab.apps.App
         MainAxes                        matlab.ui.control.UIAxes
         ChartTab                        matlab.ui.container.Tab
         ChartGrid                       matlab.ui.container.GridLayout
-        InstallChartsGrid               matlab.ui.container.GridLayout
-        InstallCommandGrid              matlab.ui.container.GridLayout
-        InstallDescriptionLabel         matlab.ui.control.Label
-        InstallTitleLabel               matlab.ui.control.Label
-        CopyInstallCommandButton        matlab.ui.control.Button
-        InstallCommandEditField         matlab.ui.control.EditField
         ExploreSummaryLabel             matlab.ui.control.Label
         ExploreControlGrid              matlab.ui.container.GridLayout
         XVariableDropDown               matlab.ui.control.DropDown
@@ -184,14 +178,12 @@ classdef FlightSensorApp < matlab.apps.App
 
             if app.ChartExamplesAvailable
                 app.ChartGrid.Visible = "on";
-                app.InstallChartsGrid.Visible = "off";
                 app.clearInstallChartsPanel();
                 app.ExploreActionButton.Text = "Explore Data";
                 app.ExploreActionButton.FontColor = [0 0 0];
                 app.ExploreActionButton.FontSize = 12;
             else
                 app.ChartGrid.Visible = "off";
-                app.InstallChartsGrid.Visible = "off";
                 app.showInstallChartsPanel();
                 app.ExploreActionButton.Text = "Package Missing: Chart Examples";
                 app.ExploreActionButton.FontColor = [0.75 0.10 0.10];
@@ -217,19 +209,18 @@ classdef FlightSensorApp < matlab.apps.App
                 BorderType="none", Units="normalized", Position=[0 0 1 1]);
             uilabel(app.InstallChartsPanel, ...
                 Text="Install in MATLAB", FontSize=18, FontWeight="bold", ...
-                Units="normalized", Position=[0.25 0.55 0.50 0.06]);
+                Position=[125 260 390 28]);
             uieditfield(app.InstallChartsPanel, "text", ...
                 Value="mpminstall chart_examples", Editable="off", ...
                 FontName="Consolas", FontSize=14, ...
-                Units="normalized", Position=[0.25 0.48 0.43 0.06]);
+                Position=[125 220 320 30]);
             uibutton(app.InstallChartsPanel, ...
                 Text="Copy", BackgroundColor=[0 0.45 0.74], ...
-                FontColor=[1 1 1], Units="normalized", ...
-                Position=[0.69 0.48 0.08 0.06], ...
+                FontColor=[1 1 1], Position=[450 220 65 30], ...
                 ButtonPushedFcn=@(~, event) app.CopyInstallCommandButtonPushed(event));
             uilabel(app.InstallChartsPanel, ...
                 Text="Requires R2026b and later.", FontColor=[0.35 0.35 0.35], ...
-                Units="normalized", Position=[0.25 0.41 0.50 0.05]);
+                Position=[125 185 390 22]);
         end
 
         function clearInstallChartsPanel(app)

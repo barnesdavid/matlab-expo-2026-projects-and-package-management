@@ -170,68 +170,6 @@
                             <Tab name='ChartTab'>
                                 <Title>'Explore'</Title>
                                 <Children>
-                                    <GridLayout name='InstallChartsGrid'>
-                                        <ColumnSpacing>8</ColumnSpacing>
-                                        <ColumnWidth>{'1x', 390, '1x'}</ColumnWidth>
-                                        <Padding>[24 24 24 24]</Padding>
-                                        <RowHeight>{'1x', 'fit', 'fit', 'fit', '1x'}</RowHeight>
-                                        <RowSpacing>10</RowSpacing>
-                                        <Visible>'off'</Visible>
-                                        <Children>
-                                            <Label name='InstallTitleLabel'>
-                                                <FontSize>18</FontSize>
-                                                <FontWeight>'bold'</FontWeight>
-                                                <Layout>
-                                                    <Column>2</Column>
-                                                    <Row>2</Row>
-                                                </Layout>
-                                                <Text>'Install in MATLAB'</Text>
-                                            </Label>
-                                            <GridLayout name='InstallCommandGrid'>
-                                                <BackgroundColor>[0.94 0.95 0.96]</BackgroundColor>
-                                                <ColumnSpacing>0</ColumnSpacing>
-                                                <ColumnWidth>{'1x', 'fit'}</ColumnWidth>
-                                                <Layout>
-                                                    <Column>2</Column>
-                                                    <Row>3</Row>
-                                                </Layout>
-                                                <Padding>[0 0 0 0]</Padding>
-                                                <RowHeight>{'fit'}</RowHeight>
-                                                <Children>
-                                                    <EditField name='InstallCommandEditField'>
-                                                        <Editable>'off'</Editable>
-                                                        <FontName>'Consolas'</FontName>
-                                                        <FontSize>14</FontSize>
-                                                        <Layout>
-                                                            <Column>1</Column>
-                                                            <Row>1</Row>
-                                                        </Layout>
-                                                        <Value>'mpminstall chart_examples'</Value>
-                                                    </EditField>
-                                                    <Button name='CopyInstallCommandButton'>
-                                                        <BackgroundColor>[0 0.45 0.74]</BackgroundColor>
-                                                        <ButtonPushedFcn>CopyInstallCommandButtonPushed</ButtonPushedFcn>
-                                                        <FontColor>[1 1 1]</FontColor>
-                                                        <FontSize>12</FontSize>
-                                                        <Layout>
-                                                            <Column>2</Column>
-                                                            <Row>1</Row>
-                                                        </Layout>
-                                                        <Text>'Copy'</Text>
-                                                        <Tooltip>'Copy install command'</Tooltip>
-                                                    </Button>
-                                                </Children>
-                                            </GridLayout>
-                                            <Label name='InstallDescriptionLabel'>
-                                                <FontColor>[0.35 0.35 0.35]</FontColor>
-                                                <Layout>
-                                                    <Column>2</Column>
-                                                    <Row>4</Row>
-                                                </Layout>
-                                                <Text>'Requires R2026b and later.'</Text>
-                                            </Label>
-                                        </Children>
-                                    </GridLayout>
                                     <GridLayout name='ChartGrid'>
                                         <ColumnWidth>{'1x'}</ColumnWidth>
                                         <Padding>[8 8 8 8]</Padding>

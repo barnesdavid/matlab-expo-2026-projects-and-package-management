@@ -1,30 +1,11 @@
 name = "Air Speed Virtual Sensor"
 
 [folders]
-path = ["apps", "src", "data", "examples"]
+path = ["src/app", "src", "src/data", "src/examples"]
 test = ["tests"]
 
-[dependencies]
-# File Exchange package used by the optional Explore charts.
-chart_examples = {version = "*", id = "d47c73c1-4864-4beb-93d4-9642d80fcb1b"}
-
 [project]
-summary = "R2026b MATLAB Project example using a File Exchange package dependency."
-shortcuts = {"Open flight sensor app" = {path = "apps/FlightSensorApp.m"}}
-
-[[package]]
-configuration-name = "AirSpeedVirtualSensorPackage"
-unique-id = "23fbb47e-da87-49f5-a5d5-b0a638ae0748"
-output-file-name = "AirSpeedVirtualSensor_1_0_0.mltbx"
-output-folder = "release"
-name = "AirSpeedVirtualSensor"
-supported-platforms = [
-    "windows",
-    "linux",
-    "macos",
-]
-display-name = "Air Speed Virtual Sensor App"
-version = "1.0.0"
-id = "3718acc6-57ca-476b-b029-10ee4dea58a6"
-use-license-bsd = false
-package-root = "."
+summary = "MATLAB Expo workshop for MATLAB Projects and package management in R2026b."
+shortcuts = {
+"Open workshop guide" = {path = "WorkshopGuide.m"},
+"Open flight sensor app" = {path = "src/app/FlightSensorApp.m"}}

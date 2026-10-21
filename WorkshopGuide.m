@@ -203,11 +203,20 @@ buildtool package %[output:8c86afa7]
 proj = currentProject;
 proj.close;
 % Verify no other packages are installed
-mpmlist %[output:73c90a55]
+mpmlist %[output:806bd231]
 % Navigate to the releases folder
 cd("release\")
 %%
-dir %[output:17c6aa84]
+out = dir %[output:49f0db98]
+%%
+mpminstall("AirSpeedVirtualSensor_1_0_0.mltbx",Prompt=false) %[output:88111aa4]
+%%
+mpmlist %[output:3d09020f]
+%%
+mpmuninstall("AirSpeedVirtualSensor",Prompt=false) %[output:8365ef9b]
+%%
+%[text] And finally lets return to the Project Root
+cd("..")
 %%
 %[text] ## Summary
 %[text] A MATLAB Project ensure that your have a consistent environment for your codebase by managing the paths, package dependencies, tests, and other metadata in a single `matlab.toml` file. Manual package installation is a useful first step, while `matlab.toml` turns that setup into a project requirement that MATLAB restores on project open.
@@ -295,9 +304,18 @@ dir %[output:17c6aa84]
 %[output:8c86afa7]
 %   data: {"dataType":"text","outputData":{"text":"** Starting package\nCreated package 'C:\\Codex\\air-speed-virtual-sensor-app\\release\\AirSpeedVirtualSensor_1_0_0.mltbx'\n** Finished package\n\nBuild Successful:\n    <a href=\"matlab:disp(sprintf('\\n')); matlab.unittest.internal.diagnostics.displayCellArrayAsTable([{'package';} {'Successful';} {'';} {'00:00:00';} {'Build package';}], {'Task' 'Status' 'Reason' 'Duration' 'Description'})\">1 Task<\/a>: 0 Failed, 0 Skipped\n    1.329 sec total build time\n","truncated":false}}
 %---
-%[output:73c90a55]
+%[output:806bd231]
 %   data: {"dataType":"text","outputData":{"text":"No matching packages found.\n","truncated":false}}
 %---
-%[output:17c6aa84]
-%   data: {"dataType":"text","outputData":{"text":"\n.                                  ..                                 AirSpeedVirtualSensor_1_0_0.mltbx  \n\n","truncated":false}}
+%[output:49f0db98]
+%   data: {"dataType":"tabular","outputData":{"columnNames":["name","folder","date","bytes","isdir","datenum"],"columns":6,"cornerText":"Fields","dataTypes":["char","char","char","double","logical","double"],"header":"3×1 struct array with fields:","name":"out","rows":3,"type":"struct","value":[["'.'","'C:\\Codex\\air-speed-virtual-sensor-app\\release'","'21-Oct-2026 13:47:02'","0","1","7.4028e+05"],["'..'","'C:\\Codex\\air-speed-virtual-sensor-app\\release'","'21-Oct-2026 13:51:46'","0","1","7.4028e+05"],["'AirSpeedVirtualSensor_1_0_0.mltbx'","'C:\\Codex\\air-speed-virtual-sensor-app\\release'","'21-Oct-2026 13:47:02'","4406254","0","7.4028e+05"]]}}
+%---
+%[output:88111aa4]
+%   data: {"dataType":"text","outputData":{"text":"\nYou will be accessing content made available under separate license terms.\nLicense terms are available in the package installation folder.\n\nThe following packages will be installed:\n    AirSpeedVirtualSensor@1.0.0  (Repository: N\/A)\n        Chart_Examples@1.1.0  (Repository: File Exchange Repository)\n\nSuccessfully installed the following packages:\n    AirSpeedVirtualSensor@1.0.0  (<a href=\"matlab: help('AirSpeedVirtualSensor@1.0.0')\" style=\"font-weight:bold\">help<\/a>)\n\nInstallation complete.\n\n","truncated":false}}
+%---
+%[output:3d09020f]
+%   data: {"dataType":"text","outputData":{"text":"\n                                 <strong>Name<\/strong>                                 <strong>Version<\/strong>    <strong>Editable<\/strong>    <strong>DirectlyInstalled<\/strong>\n    <strong>______________________________________________________________<\/strong>    <strong>_______<\/strong>    <strong>________<\/strong>    <strong>_________________<\/strong>\n\n    \"Air Speed Virtual Sensor App (AirSpeedVirtualSensor)\"            \"1.0.0\"     false            true       \n    \"Creating Specialized Charts with MATLAB OOP (Chart_Examples)\"    \"1.1.0\"     false            false      \n\n","truncated":false}}
+%---
+%[output:8365ef9b]
+%   data: {"dataType":"text","outputData":{"text":"\nThe following packages will be uninstalled:\n    AirSpeedVirtualSensor@1.0.0\n        Chart_Examples@1.1.0\n\nUninstallation complete.\n","truncated":false}}
 %---

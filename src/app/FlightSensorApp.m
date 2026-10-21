@@ -205,7 +205,6 @@ classdef FlightSensorApp < matlab.apps.App
             app.ChartHostPanel.Layout.Row = 2;
 
             app.ExploreSummaryLabel = uilabel(app.ChartGrid, ...
-                FontColor=[0.25 0.25 0.25], ...
                 Text="Choose a plot type to explore the flight data.", ...
                 WordWrap="on");
             app.ExploreSummaryLabel.Layout.Row = 3;
@@ -223,7 +222,6 @@ classdef FlightSensorApp < matlab.apps.App
                 app.ChartGrid.Visible = "on";
                 app.clearInstallChartsPanel();
                 app.ExploreActionButton.Text = "Explore Data";
-                app.ExploreActionButton.FontColor = [0 0 0];
                 app.ExploreActionButton.FontSize = 12;
             else
                 app.ChartGrid.Visible = "off";

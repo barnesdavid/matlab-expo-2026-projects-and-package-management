@@ -1,0 +1,26 @@
+[[package]]
+configuration-name = "AirSpeedVirtualSensorPackage"
+output-file-name = "AirSpeedVirtualSensor_1_0_0.mltbx"
+output-folder = "release"
+name = "AirSpeedVirtualSensor"
+supported-platforms = [
+    "windows",
+    "linux",
+    "macos",
+]
+display-name = "Air Speed Virtual Sensor App"
+version = "1.0.0"
+id = "3718acc6-57ca-476b-b029-10ee4dea58a6"
+use-license-bsd = false
+package-root = "src"
+provider.name = "David Barnes"
+provider.email = "dbarnes@mathworks.com"
+provider.organization = "MathWorks"
+summary = "Explore NASA aircraft flight data and build a virtual airspeed sensor"
+description = "This MATLAB package provides sample flight data and an app to show how to clean flight data and build a virtual airspeed sensor from other available sensor signals."
+product-dependencies = [
+    "MATLAB",
+    "Statistics and Machine Learning Toolbox",
+]
+lastAccessed = "1792610258912"
+release-compatibility = ">=26.2.*"

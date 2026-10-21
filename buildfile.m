@@ -8,5 +8,7 @@ plan("check") = CodeIssuesTask;
 plan("test") = TestTask;
 plan("package") = PackageTask;
 
+plan("package").Dependencies = "test";
+
 plan.DefaultTasks = ["check" "test"];
 end

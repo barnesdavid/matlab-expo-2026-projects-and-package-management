@@ -1,15 +1,15 @@
 # MATLAB Projects and Package Management
 
-This 90-minute MATLAB Expo workshop uses an air speed virtual sensor app to introduce MATLAB Projects, the MATLAB Package Manager, project package dependencies, app testing, and toolbox packaging in MATLAB R2026b.
+This 90-minute workshop uses an air speed virtual sensor app to introduce MATLAB Projects, the MATLAB Package Manager, project dependencies, app testing, and package management in MATLAB R2026b.
 
 ## Open in MATLAB Online
 
 [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=barnesdavid/matlab-expo-2026-projects-and-package-management&file=WorkshopGuide.m)
 
-For desktop MATLAB, clone this repository from:
+From MATLAB R2026b, clone this repository from:
 
-```text
-https://github.com/barnesdavid/matlab-expo-2026-projects-and-package-management
+```matlab
+gitclone https://github.com/barnesdavid/matlab-expo-2026-projects-and-package-management
 ```
 
 The workshop requires MATLAB R2026b and Statistics and Machine Learning Toolbox.

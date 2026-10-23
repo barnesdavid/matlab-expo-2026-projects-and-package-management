@@ -69,7 +69,7 @@ FlightSensorApp
 %[text] The same app now works with both the project folders being added to the path and the package dependency being installed. But how can we help others who are using the MATLAB Project?
 %%
 %[text] ## Declare the Package Dependency
-%[text] While we manually installed the package previously, but it does not ensure that other users of an app will have Chart Examples installed.  to another user. Starting in R2026b MATLAB Projects can declare its package requirements in `matlab.toml`. You can add the package as a dependency by clicking on the "Dependencies" in the Project Toolstrip:
+%[text] While we manually installed the package previously, but it does not ensure that other users of an app will have Chart Examples installed. Starting in R2026b MATLAB Projects can declare its package requirements in `matlab.toml`. You can add the package as a dependency by clicking on the "Dependencies" in the Project Toolstrip:
 %[text] \<insert picture of the Dependencies button\>
 %[text] This project does not have any dependencies declared, but you can add a new dependency with the new Dependency button to add a new Package Dependency
 %[text] \<insert picture of the dropdown for the types of dependencies\>
@@ -80,6 +80,7 @@ FlightSensorApp
 %[text] Chart_Examples = {version = ">=2.3.2", id = "d47c73c1-4864-4beb-93d4-9642d80fcb1b"}
 %[text] ```
 %[text] 
+%[text] Alternatively, you can simply uncomment the dependency already listed in the `matlab.toml` by removing the "`#`" in in the `[dependencies]` section.
 %[text] NOTE: MATLAB Projects support both a package dependency and a reference project dependency. You will use reference project dependencies if you do need to co-develop two code bases together. To create a reference project dependency, you would clone the git repository to another folder or add a git Submodule.
 %[text] Here is a check that the dependency was added:
 proj = currentProject;
@@ -118,8 +119,8 @@ mpmlist
 %[text] \<insert screenshot of the build tool dropdown\>
 buildtool test -ui % MATLAB Build Tool API
 %[text] NOTE: For more information about testing, build automation, and continuous integration (CI), check out the following workshops:
-%[text] - Generating Tests for Your MATLAB Code Workshop: [https://github.com/mathworks/Generating-Tests-for-Your-MATLAB-Code-Workshop](https://github.com/mathworks/Generating-Tests-for-Your-MATLAB-Code-Workshop) 
-%[text] - MATLAB Expo Workshop on Build Automation and CI: [https://github.com/mathworks/Expo-2023-Whats-New-for-Managing-Testing-and-Building-your-MATLAB-Code/](https://github.com/mathworks/Expo-2023-Whats-New-for-Managing-Testing-and-Building-your-MATLAB-Code/) 
+%[text] - Generating Tests for Your MATLAB Code Workshop: [https://github.com/mathworks/Generating-Tests-for-Your-MATLAB-Code-Workshop](https://github.com/mathworks/Generating-Tests-for-Your-MATLAB-Code-Workshop)
+%[text] - MATLAB Expo Workshop on Build Automation and CI: [https://github.com/mathworks/Expo-2023-Whats-New-for-Managing-Testing-and-Building-your-MATLAB-Code/](https://github.com/mathworks/Expo-2023-Whats-New-for-Managing-Testing-and-Building-your-MATLAB-Code/)
 %[text] - Continuous Integration with MATLAB and GitHub Actions Workshop: [https://github.com/mathworks/ci-with-matlab-and-github-actions-workshop/https://github.com/mathworks/ci-with-matlab-and-github-actions-workshop/](https://github.com/mathworks/ci-with-matlab-and-github-actions-workshop/https://github.com/mathworks/ci-with-matlab-and-github-actions-workshop/)  \
 %[text] Inspect the generated screenshot after the test run. The image is a useful record of the tested UI state and is excluded from source control.
 %[text] All tests should be passing! Now we can proceed with building a package to share the app, functions, and data with others.

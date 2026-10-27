@@ -80,7 +80,6 @@ FlightSensorApp
 %[text] ```
 %[text] Chart_Examples = {version = ">=2.3.2", id = "d47c73c1-4864-4beb-93d4-9642d80fcb1b"}
 %[text] ```
-%[text] 
 %[text] Alternatively, you can simply uncomment the dependency table in the `matlab.toml` by removing the "`#`" in in the `[dependencies]` section.
 %[text] For the purpose of making this workshop easy to follow through this guide, the following utility function will add the package dependency for you:
 workshopAddPackageDependencyToProject

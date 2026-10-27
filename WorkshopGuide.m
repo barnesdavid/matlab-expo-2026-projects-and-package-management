@@ -1,11 +1,11 @@
 %[text] # MATLAB Projects and Package Management
 %[text] This 90-minute workshop uses an air speed virtual sensor app to introduce MATLAB Projects, the MATLAB Package Manager, project dependencies, app testing, and package management in MATLAB R2026b.
 %[text] ## What You Will Do
-%[text] 1. Open the MATLAB Project to set up the development environment
-%[text] 2. Run the `FlightSensor.m` app with an optional File Exchange capability missing
-%[text] 3. Install and `Chart_Examples` from File Exchange using the MATLAB Package Manager
-%[text] 4. Declare a package dependency on `Chart_Examples` in `matlab.toml` to configure the development environment
-%[text] 5. Build the custom package to share with other MATLAB and Simulink users \
+%[text] - Open the MATLAB Project to set up the development environment
+%[text] - Run the `FlightSensorApp.m` app with an optional File Exchange capability missing
+%[text] - Install `Chart_Examples` from File Exchange using the MATLAB Package Manager
+%[text] - Declare a package dependency on `Chart_Examples` in `matlab.toml` to configure the development environment
+%[text] - Build the custom package to share with other MATLAB and Simulink users \
 %%
 %[text] ## Open the Project
 %[text] In the Files Panel, double-click `matlab.toml`.
@@ -24,7 +24,7 @@ which FlightData.xlsx
 FlightSensorApp
 %[text] This app loads in data, cleans the data, and fits a machine learning model to be a virtual sensor using helper functions in the folder `src`.
 %%
-%[text] Select **Explore Data**. The app opens the Explore tab, but this panel requires a package dependency to work.
+%[text] Click the **Explore Data** button. The app opens the Explore tab, but this panel requires a package dependency to work.
 %[text] ![](text:image:6a57)
 %%
 %[text] Let's close the app and check what packages are available and using the `mpmlist` command.
@@ -61,7 +61,7 @@ mpmlist
 %[text] ![](text:image:2a31)
 %[text] The File Exchange page also provides information about the package author, files, versions, and more.
 %%
-%[text] Now that we have installed the package, let's reopen the project, and run `FlightSensorApp`. Select **Explore Data**, then explore the Trend and Relationship plot types.
+%[text] Now that we have installed the package, let's reopen the project, and run `FlightSensorApp`. Click the **Explore Data** button, then explore the Trend and Relationship plot types.
 openProject(pwd);
 FlightSensorApp
 %[text] ![](text:image:889f)

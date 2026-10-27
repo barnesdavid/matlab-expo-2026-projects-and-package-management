@@ -1,11 +1,11 @@
 name = "Air Speed Virtual Sensor"
 
 [folders]
-path = ["src/app", "src", "src/data", "src/examples"]
+path = ["src/app", "src", "src/data", "src/examples", "helpers"]
 test = ["tests"]
 
 [dependencies]
-#Chart_Examples = {version = ">=2.3.2", id = "d47c73c1-4864-4beb-93d4-9642d80fcb1b"}
+Chart_Examples = {version = ">=2.3.2", id = "d47c73c1-4864-4beb-93d4-9642d80fcb1b"}
 
 [project]
 summary = "MATLAB Expo workshop for MATLAB Projects and package management in R2026b."

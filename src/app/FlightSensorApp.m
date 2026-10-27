@@ -212,7 +212,7 @@ classdef FlightSensorApp < matlab.apps.App
 
         function updateChartExamplesButton(app)
             try
-                packageInfo = mpmlist("chart_examples");
+                packageInfo = mpmlist("Chart_Examples");
                 app.ChartExamplesAvailable = ~isempty(packageInfo) && packageInfo.Installed;
             catch
                 app.ChartExamplesAvailable = false;
@@ -252,7 +252,7 @@ classdef FlightSensorApp < matlab.apps.App
                 Text="Install in MATLAB", FontSize=18, FontWeight="bold", ...
                 Position=[125 260 390 28]);
             uieditfield(app.InstallChartsPanel, "text", ...
-                Value="mpminstall chart_examples", Editable="off", ...
+                Value="mpminstall Chart_Examples", Editable="off", ...
                 FontName="Consolas", FontSize=14, ...
                 Position=[125 220 320 30]);
             uibutton(app.InstallChartsPanel, ...
@@ -538,7 +538,7 @@ classdef FlightSensorApp < matlab.apps.App
             try
                 if ~app.ChartExamplesAvailable
                     app.ResultsTabGroup.SelectedTab = app.ChartTab;
-                    app.setStatus("Install chart_examples to enable the Explore charts.");
+                    app.setStatus("Install Chart_Examples to enable the Explore charts.");
                     return
                 end
                 app.renderExploreData();
@@ -588,8 +588,8 @@ classdef FlightSensorApp < matlab.apps.App
 
         % Callback function
         function CopyInstallCommandButtonPushed(app, event)
-            clipboard("copy", "mpminstall chart_examples");
-            app.setStatus("Copied mpminstall chart_examples to the clipboard.");
+            clipboard("copy", "mpminstall Chart_Examples");
+            app.setStatus("Copied mpminstall Chart_Examples to the clipboard.");
         end
     end
 

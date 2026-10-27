@@ -5,9 +5,9 @@ classdef TestFitVirtualSensor < matlab.unittest.TestCase
             % Verify the function fits a model and returns the expected structure fields.
             numRows = 30;
             flightData = localCreateFlightData(numRows);
-
+            warning("off","MATLAB:rankDeficientMatrix")
             model = fitVirtualSensor(flightData);
-
+            warning("on","MATLAB:rankDeficientMatrix")
             testCase.verifyClass(model, "struct");
             testCase.verifyTrue(isfield(model, "PredictorNames"));
             testCase.verifyTrue(isfield(model, "Coefficients"));

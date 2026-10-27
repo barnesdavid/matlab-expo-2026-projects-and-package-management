@@ -48,7 +48,7 @@ classdef FlightSensorApp < matlab.apps.App
         ExploreChart = []
         ChartExamplesAvailable (1,1) logical = false
         ExploreActionButton matlab.ui.control.Button
-        InstallChartsPanel = []
+        MissingDependencyPanel = []
         ChartGrid matlab.ui.container.GridLayout
         ExploreSummaryLabel matlab.ui.control.Label
         ExploreControlGrid matlab.ui.container.GridLayout
@@ -220,12 +220,12 @@ classdef FlightSensorApp < matlab.apps.App
 
             if app.ChartExamplesAvailable
                 app.ChartGrid.Visible = "on";
-                app.clearInstallChartsPanel();
+                app.clearMissingDependencyPanel();
                 app.ExploreActionButton.Text = "Explore Data";
                 app.ExploreActionButton.FontSize = 12;
             else
                 app.ChartGrid.Visible = "off";
-                app.showInstallChartsPanel();
+                app.showMissingDependencyPanel();
                 app.ExploreActionButton.Text = "Package Missing: Chart Examples";
                 app.ExploreActionButton.FontColor = [0.75 0.10 0.10];
                 app.ExploreActionButton.FontSize = 12;
@@ -240,35 +240,55 @@ classdef FlightSensorApp < matlab.apps.App
             app.ExploreActionButton.Layout.Column = [1 2];
         end
 
-        function showInstallChartsPanel(app)
-            if ~isempty(app.InstallChartsPanel) && isvalid(app.InstallChartsPanel)
-                app.InstallChartsPanel.Visible = "on";
+        function showMissingDependencyPanel(app)
+            if ~isempty(app.MissingDependencyPanel) && isvalid(app.MissingDependencyPanel)
+                app.MissingDependencyPanel.Visible = "on";
                 return
             end
 
-            app.InstallChartsPanel = uipanel(app.ChartTab, ...
-                BorderType="none", Units="normalized", Position=[0 0 1 1]);
-            uilabel(app.InstallChartsPanel, ...
-                Text="Install in MATLAB", FontSize=18, FontWeight="bold", ...
-                Position=[125 260 390 28]);
-            uieditfield(app.InstallChartsPanel, "text", ...
-                Value="mpminstall Chart_Examples", Editable="off", ...
-                FontName="Consolas", FontSize=14, ...
-                Position=[125 220 320 30]);
-            uibutton(app.InstallChartsPanel, ...
-                Text="Copy", BackgroundColor=[0 0.45 0.74], ...
-                FontColor=[1 1 1], Position=[450 220 65 30], ...
-                ButtonPushedFcn=@(~, event) app.CopyInstallCommandButtonPushed(event));
-            uilabel(app.InstallChartsPanel, ...
-                Text="Requires R2026b and later.", FontColor=[0.35 0.35 0.35], ...
-                Position=[125 185 390 22]);
+            app.MissingDependencyPanel = uipanel(app.ChartTab, ...
+                AutoResizeChildren="off", BorderType="none", ...
+                Units="normalized", Position=[0 0 1 1], ...
+                SizeChangedFcn=@(~, ~) app.layoutMissingDependencyPanel());
+            uilabel(app.MissingDependencyPanel, ...
+                Text="Missing Package Dependency Chart_Examples from File Exchange", ...
+                FontSize=16, FontWeight="bold", HorizontalAlignment="center", ...
+                WordWrap="on", Tag="MissingDependencyNotice");
+            uihyperlink(app.MissingDependencyPanel, ...
+                Text="View Chart_Examples on File Exchange", ...
+                URL="https://www.mathworks.com/matlabcentral/fileexchange/65857-chart-examples", ...
+                HorizontalAlignment="center", Tag="FileExchangeLink");
+            app.layoutMissingDependencyPanel();
         end
 
-        function clearInstallChartsPanel(app)
-            if ~isempty(app.InstallChartsPanel) && isvalid(app.InstallChartsPanel)
-                delete(app.InstallChartsPanel);
+        function clearMissingDependencyPanel(app)
+            if ~isempty(app.MissingDependencyPanel) && isvalid(app.MissingDependencyPanel)
+                delete(app.MissingDependencyPanel);
             end
-            app.InstallChartsPanel = [];
+            app.MissingDependencyPanel = [];
+        end
+
+        function layoutMissingDependencyPanel(app)
+            if isempty(app.MissingDependencyPanel) || ~isvalid(app.MissingDependencyPanel)
+                return
+            end
+
+            notice = findall(app.MissingDependencyPanel, Tag="MissingDependencyNotice");
+            link = findall(app.MissingDependencyPanel, Tag="FileExchangeLink");
+            if isempty(notice) || isempty(link)
+                return
+            end
+
+            panelPosition = getpixelposition(app.MissingDependencyPanel);
+            panelWidth = panelPosition(3);
+            panelHeight = panelPosition(4);
+            contentWidth = min(600, max(320, panelWidth - 40));
+            groupHeight = 88;
+            groupBottom = max(20, (panelHeight - groupHeight) / 2);
+            contentLeft = max(20, (panelWidth - contentWidth) / 2);
+
+            notice.Position = [contentLeft groupBottom + 36 contentWidth 52];
+            link.Position = [contentLeft groupBottom contentWidth 22];
         end
 
         function updateExploreControlState(app)
@@ -538,7 +558,7 @@ classdef FlightSensorApp < matlab.apps.App
             try
                 if ~app.ChartExamplesAvailable
                     app.ResultsTabGroup.SelectedTab = app.ChartTab;
-                    app.setStatus("Install Chart_Examples to enable the Explore charts.");
+                    app.setStatus("Chart_Examples package dependency is missing. View the File Exchange link for details.");
                     return
                 end
                 app.renderExploreData();
@@ -584,12 +604,6 @@ classdef FlightSensorApp < matlab.apps.App
             catch exception
                 app.reportError("Unable to fit virtual sensor", exception);
             end
-        end
-
-        % Callback function
-        function CopyInstallCommandButtonPushed(app, event)
-            clipboard("copy", "mpminstall Chart_Examples");
-            app.setStatus("Copied mpminstall Chart_Examples to the clipboard.");
         end
     end
 

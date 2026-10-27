@@ -1,14 +1,7 @@
 %[text] # Consistent Development Environments with MATLAB Projects and Package Management
-%[text] This 90-minute workshop uses an air speed virtual sensor app to introduce MATLAB Projects, the MATLAB Package Manager, project dependencies, app testing, and package management in MATLAB R2026b.
-%[text] ## Overview of the Workshop
-%[text] - Use a MATLAB Project to set up your development environment
-%[text] - Run the `FlightSensorApp.m` app which has a package dependency
-%[text] - Install `Chart_Examples` from File Exchange using the MATLAB Package Manager
-%[text] - Declare a package dependency on `Chart_Examples` in `matlab.toml` to configure the development environment
-%[text] - Build the custom package to share with other MATLAB and Simulink users \
-%[text] Today our goal is to use MATLAB Projects and MATLAB Package Manager to set a development environment that works on my machine, your machine, and in Continuous Integration (CI) systems.
+%[text] This 90-minute workshop introduces MATLAB Projects and MATLAB Package Manager to set up a consistent development environment that works on my machine, your machine, and in Continuous Integration (CI) systems.
 %[text] ![](text:image:6f22)
-%[text] We will do this through the following:
+%[text] For your code to work across machines, you will need to add folders the MATLAB path and install any missing package dependencies. We will configure a consistent development environment by the following steps:
 %[text] - Use a MATLAB Project to set up your development environment
 %[text] - Run the `FlightSensorApp.m` app which has a package dependency
 %[text] - Install `Chart_Examples` from File Exchange using the MATLAB Package Manager

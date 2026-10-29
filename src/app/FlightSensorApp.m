@@ -33,6 +33,7 @@ classdef FlightSensorApp < matlab.apps.App
         DataFileEditFieldLabel          matlab.ui.control.Label
         LoadDataButton                  matlab.ui.control.Button
         FileLabel                       matlab.ui.control.Label
+        RefreshAppButton                matlab.ui.control.Button
         TitleLabel                      matlab.ui.control.Label
     end
 
@@ -222,6 +223,7 @@ classdef FlightSensorApp < matlab.apps.App
                 app.ChartGrid.Visible = "on";
                 app.clearMissingDependencyPanel();
                 app.ExploreActionButton.Text = "Explore Data";
+                app.ExploreActionButton.FontColor = [0 0 0];
                 app.ExploreActionButton.FontSize = 12;
             else
                 app.ChartGrid.Visible = "off";
@@ -565,6 +567,23 @@ classdef FlightSensorApp < matlab.apps.App
                 app.setStatus("Opened the data exploration view.");
             catch exception
                 app.reportError("Unable to explore data", exception);
+            end
+        end
+
+        % Button pushed function: RefreshAppButton
+        function RefreshAppButtonPushed(app, event)
+            try
+                app.updateChartExamplesButton();
+                if app.ChartExamplesAvailable
+                    if app.ResultsTabGroup.SelectedTab == app.ChartTab && ~isempty(app.RawData)
+                        app.renderExploreData();
+                    end
+                    app.setStatus("Refreshed Chart_Examples package dependency status.");
+                else
+                    app.setStatus("Chart_Examples package dependency is still missing.");
+                end
+            catch exception
+                app.reportError("Unable to refresh package dependency status", exception);
             end
         end
 

@@ -92,7 +92,7 @@ FlightSensorApp
 %[text] <u>**Option 2: Uncomment the**</u> <u>**`[dependencies]`**</u> <u>**table in**</u> <u>**`matlab.toml`**</u> <u>**provided to you for this workshop**</u>
 %[text] Alternatively, you can simply uncomment the dependency table in the **`matlab.toml`** by removing the **`#`** for the **`[dependencies]`** section.
 %%
-%[text] <u>**Option 3: Run the utility**</u> <u>**`workshopAddPackageDependencyToProjec.m`**</u> <u>**to add the package for you**</u>
+%[text] <u>**Option 3: Run the utility**</u> <u>**`workshopAddPackageDependencyToProject.m`**</u> <u>**to add the package for you**</u>
 %[text] For the purpose of making this workshop easy to follow through this guide, the following utility function will add the package dependency for you:
 workshopAddPackageDependencyToProject
 % Reload the project to install the dependencies

@@ -2,6 +2,16 @@
 
 This 90-minute workshop introduces MATLAB Projects and MATLAB Package Manager to set up a consistent development environment that works on my machine, your machine, and in Continuous Integration (CI) systems.
 
+## About the Workshop
+
+This hands-on workshop guides you on how to:
+
+- Set up the development environment by opening the MATLAB Project
+- Install the package dependency `Chart_Examples` from File Exchange
+- Declare package dependencies in the `matlab.toml`
+- Run tests to verify the code is works as intended
+- Build a package from the project using Build Tool
+
 ## Open in MATLAB Online
 
 [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=barnesdavid/matlab-expo-2026-projects-and-package-management&file=WorkshopGuide.m)
@@ -14,15 +24,17 @@ gitclone https://github.com/barnesdavid/matlab-expo-2026-projects-and-package-ma
 
 The workshop requires MATLAB R2026b and Statistics and Machine Learning Toolbox.
 
-## Start the Workshop
+## Getting Started
 
 1. In the MATLAB Files panel, double-click `matlab.toml` to open the project. MATLAB configures the project paths.
 2. In the Project tab, select **WorkshopGuide**.
 3. Complete `WorkshopGuide.m` in order.
 
-The guide begins with the app's core workflow and an optional File Exchange capability that is unavailable until `Chart_Examples` is installed.
+Step-by-step instructions are available in [WorkshopGuide.m](WorkshopGuide.m).
 
-The starter `matlab.toml` includes a commented `Chart_Examples` dependency template. During the workshop, add the dependency by using the MATLAB Projects UI, uncommenting the template, or running `workshopAddPackageDependencyToProject`. MATLAB Projecst installs declared package dependencies when the project opens.
+The guide begins with the app's core workflow and an optional File Exchange capability that is unavailable until `Chart_Examples` is installed. Use the app **Refresh** button after installing the package to recheck its availability without closing the app.
+
+The starter `matlab.toml` includes a commented `Chart_Examples` dependency template. During the workshop, add the dependency by using the MATLAB Projects UI, uncommenting the template, or running `workshopAddPackageDependencyToProject`. MATLAB Projects installs declared package dependencies when the project opens.
 
 ## Workshop Contents
 

@@ -4,12 +4,12 @@ This 90-minute workshop introduces MATLAB Projects and MATLAB Package Manager to
 
 ## About the Workshop
 
-This hands-on workshop guides you on how to:
+This hands-on workshop guides you through:
 
 - Set up the development environment by opening the MATLAB Project
 - Install the package dependency `Chart_Examples` from File Exchange
 - Declare package dependencies in the `matlab.toml`
-- Run tests to verify the code is works as intended
+- Run tests to verify the code works as intended
 - Build a package from the project using Build Tool
 
 ## Open in MATLAB Online
@@ -23,6 +23,10 @@ gitclone https://github.com/barnesdavid/matlab-expo-2026-projects-and-package-ma
 ```
 
 The workshop requires MATLAB R2026b and Statistics and Machine Learning Toolbox.
+
+## Workshop License
+
+Use the [MATLAB Expo 2026 workshop license](https://www.mathworks.com/licensecenter/classroom/expo2026-4) to start MATLAB for this workshop.
 
 ## Getting Started
 
@@ -56,3 +60,5 @@ buildtool package
 ```
 
 The task creates the `.mltbx` file in the output folder configured in the package task.
+
+Copyright 2026 The MathWorks, Inc.

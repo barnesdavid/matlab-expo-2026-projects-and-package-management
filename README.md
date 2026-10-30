@@ -1,6 +1,6 @@
 # MATLAB Projects and Package Management
 
-This 90-minute workshop uses an air speed virtual sensor app to introduce MATLAB Projects, the MATLAB Package Manager, project dependencies, app testing, and package management in MATLAB R2026b.
+This 90-minute workshop introduces MATLAB Projects and MATLAB Package Manager to set up a consistent development environment that works on my machine, your machine, and in Continuous Integration (CI) systems.
 
 ## Open in MATLAB Online
 
@@ -17,10 +17,12 @@ The workshop requires MATLAB R2026b and Statistics and Machine Learning Toolbox.
 ## Start the Workshop
 
 1. In the MATLAB Files panel, double-click `matlab.toml` to open the project. MATLAB configures the project paths.
-2. In the Project tab, select **Open workshop guide**.
+2. In the Project tab, select **WorkshopGuide**.
 3. Complete `WorkshopGuide.m` in order.
 
-The guide begins with the app's core workflow and an optional File Exchange capability that is unavailable until Chart Examples is installed. You will install `chart_examples` manually with `mpminstall`, then add it as a project dependency so MATLAB restores it when the project opens.
+The guide begins with the app's core workflow and an optional File Exchange capability that is unavailable until `Chart_Examples` is installed.
+
+The starter `matlab.toml` includes a commented `Chart_Examples` dependency template. During the workshop, add the dependency by using the MATLAB Projects UI, uncommenting the template, or running `workshopAddPackageDependencyToProject`. MATLAB Projecst installs declared package dependencies when the project opens.
 
 ## Workshop Contents
 
@@ -29,15 +31,16 @@ The guide begins with the app's core workflow and an optional File Exchange capa
 - `src/app/FlightSensorApp.m` - Plain-text App Designer app
 - `src/data/FlightData.xlsx` - Flight sensor data used by the app
 - `src/examples/ExploreVirtualSensorWithChartExamples.m` - Chart Examples exploration script
-- `tests/testFlightSensorApp.m` - App workflow tests that save `results/FlightSensorApp.png`
+- `tests/` - Unit tests for the data-loading, cleaning, model-fitting, and sampling functions
+- `utils/` - Workshop helpers for adding package dependencies and metadata, verifying the dependency, and restoring the starter project configuration
 - `buildfile.m` - Build Tool tasks for code checks, tests, and toolbox packaging
 
-## Toolbox Packaging
+## Build a Package from the Project
 
-The starter `matlab.toml` intentionally does not contain a `[[package]]` section. During the workshop, the **Build Package** task creates that package configuration after participants choose the package metadata and output settings. Only after that configuration exists can they run:
+The starter `matlab.toml` intentionally does not contain a `[[package]]` section. During the workshop, create the package configuration with the **Build Package** task or `workshopAddPackageMetadataToProject`. Only after that configuration exists can you run:
 
 ```matlab
 buildtool package
 ```
 
-The task creates the toolbox file in the output folder configured in the package task. Generated `release`, `results`, and `.buildtool` folders are excluded from source control.
+The task creates the `.mltbx` file in the output folder configured in the package task.

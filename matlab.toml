@@ -10,29 +10,5 @@ shortcuts = {
 WorkshopGuide = {path = "WorkshopGuide.m"},
 FlightSensorApp = {path = "src/app/FlightSensorApp.m"}}
 
-[dependencies]
-Chart_Examples = {version = ">=2.3.2", id = "d47c73c1-4864-4beb-93d4-9642d80fcb1b"}
-
-[[package]]
-configuration-name = "Package1"
-output-file-name = "Air Speed Virtual Sensor.mltbx"
-output-folder = "Package1/release"
-name = "AirSpeedVirtualSensor"
-supported-platforms = [
-    "windows",
-    "linux",
-    "macos",
-]
-display-name = "Air Speed Virtual Sensor"
-version = "1.0.0"
-id = "f77c08eb-c68c-4478-9626-52ded59a6995"
-use-license-bsd = false
-package-root = "src"
-summary = "Explore NASA aircraft flight data and build a virtual airspeed sensor"
-provider.name = "David Barnes"
-description = "This MATLAB package provides sample flight data and an app to show how to clean flight data and build a virtual airspeed sensor from other available sensor signals."
-product-dependencies = [
-    "MATLAB",
-    "Statistics and Machine Learning Toolbox",
-]
-lastAccessed = "1793384641097"
+#[dependencies]
+#Chart_Examples = {version = ">=2.3.2", id = "d47c73c1-4864-4beb-93d4-9642d80fcb1b"}

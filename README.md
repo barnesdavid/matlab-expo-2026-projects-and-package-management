@@ -30,7 +30,7 @@ The workshop requires MATLAB R2026b and Statistics and Machine Learning Toolbox.
 2. In the Project tab, select **WorkshopGuide**.
 3. Complete `WorkshopGuide.m` in order.
 
-Step-by-step instructions are available in [WorkshopGuide.m](WorkshopGuide.m).
+Step-by-step instructions are available in [WorkshopGuide.md](WorkshopGuide.md) or [WorkshopGuide.m](WorkshopGuide.m).
 
 The guide begins with the app's core workflow and an optional File Exchange capability that is unavailable until `Chart_Examples` is installed. Use the app **Refresh** button after installing the package to recheck its availability without closing the app.
 

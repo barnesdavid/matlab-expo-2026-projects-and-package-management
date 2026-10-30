@@ -1,4 +1,5 @@
 function workshopRestoreOriginalProject
+%WORKSHOPRESTOREORIGINALPROJECT Restore the workshop starter project file.
 projectFileLines = readlines("matlab.toml");
 newLines = [
     "name = ""Air Speed Virtual Sensor"""

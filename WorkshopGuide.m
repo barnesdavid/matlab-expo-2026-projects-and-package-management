@@ -1,157 +1,185 @@
 %[text] # Consistent Development Environments with MATLAB Projects and Package Management
-%[text] This 90-minute workshop introduces MATLAB Projects and MATLAB Package Manager to set up a consistent development environment that works on my machine, your machine, and in Continuous Integration (CI) systems.
+%[text] This 90-minute workshop shows how MATLAB Projects and MATLAB Package Manager create a consistent development environment for people, continuous integration (CI) systems, and AI agents.
 %[text:tableOfContents]{"heading":"Table of Contents"}
 %%
 %[text] ## Workshop Overview
 %[text] ![](text:image:60e2)
-%[text] For your code to work across machines, you will need to add folders the MATLAB path and install any missing package dependencies. We will configure a consistent development environment by the following steps:
-%[text] - Use a MATLAB Project to set up your development environment
-%[text] - Run the **`FlightSensorApp.m`** app which has a package dependency
-%[text] - Install **`Chart_Examples`** from File Exchange using the MATLAB Package Manager
-%[text] - Declare a package dependency on **`Chart_Examples`** in **`matlab.toml`** to configure the development environment
-%[text] - Build the custom package to share with other MATLAB and Simulink users \
+%[text] MATLAB Projects keep paths, package dependencies, tests, and package metadata together so your code is ready to run without manual setup.
+%[text] In this workshop, you will:
+%[text] - Open a MATLAB Project to set up the development environment
+%[text] - Run **`FlightSensorApp`**, which has a package dependency
+%[text] - Install **`Chart_Examples`** from File Exchange using MATLAB Package Manager
+%[text] - Declare **`Chart_Examples`** in **`matlab.toml`** so MATLAB installs it when the project opens
+%[text] - Build an **`.mltbx`** package to share the app and its supporting files \
 %%
-%[text] ## Step 1: Open the Project to Control the Development Environment
-%[text] In the Files Panel, double-click **`matlab.toml`**.
+%[text] ## Workshop Requirements
+%[text] You need the following to complete this workshop:
+%[text] - MATLAB R2026b with Statistics and Machine Learning Toolbox
+%[text] - A MathWorks account with access to MATLAB through your organization's [MATLAB license](https://www.mathworks.com/licensecenter/)
+%[text] - A GitHub account to clone or create a copy of the [workshop repository](https://github.com/barnesdavid/matlab-expo-2026-projects-and-package-management) \
+%%
+%[text] ## Step 1: Open the MATLAB Project
+%[text] Open the MATLAB Project to add the project folders to the path automatically.
+%[text] In the Files panel, double-click **`matlab.toml`**.
 %[text] ![](text:image:6aa7)
-%[text] Alternatively you can open the project using:
+%[text] Alternatively, open the project using:
 openProject(pwd);
-%[text] <u>**NOTE:**</u> You may see the following on-screen notification to help you learn more about MATLAB Projects. You can simply close this notification or check the box "Do not show this again".
+%[text] <u>**NOTE:**</u> You may see a notification about MATLAB Projects. Close the notification or select "Do not show this again".
 %[text] ![](text:image:5a05)
 %%
-%[text] Now that the project is open, the folders **`src`**, **`src/app`**, **`src/data`**, and **`src/examples`** have been added to the MATLAB path.
+%[text] The project folders **`src`**, **`src/app`**, **`src/data`**, **`src/examples`**, and **`utils`** have automatically been added to the path, so the app and its supporting files are ready to run without **`addpath`** or custom setup scripts.
+%[text] In the Files panel, bold folder names indicate folders that are on the MATLAB path.
 %[text] ![](text:image:9964)
 %%
-%[text] Now that the paths have been set up, we can now use scripts, functions, apps, and other MATLAB and Simulink files. Today we will be focusing on the app **`FlightSensorApp`**, and we can see where this is using the **`which`** function:
-which FlightSensorApp
-which FlightData.xlsx
-%[text] The project is the reproducible context for this app. Its path configuration means the app can call helpers in **`src`** and load data from **`data`** without each user managing **`addpath`** calls.
+%[text] The project is now ready to run the app, functions, tests, and workshop utilities.
 %%
 %[text] ## Step 2: Run the Flight Sensor App
-%[text] Now let's use the **Open flight sensor app** shortcut in the Project tab, or run the following:
+%[text] The Flight Sensor app loads data, cleans sensor data, and trains a machine learning model to act as a virtual sensor.
+%[text] Launch the app by running:
 FlightSensorApp
-%[text] This app loads in data, cleans the data, and fits a machine learning model to be a virtual sensor using helper functions in the folder **`src`**.
+%[text] You can also launch the app from the **FlightSensorApp** shortcut in the Project tab.
+%[text] \<insert image of shortcut\>
 %%
-%[text] Notice the red **"Package Missing: Chart Examples"** button. This is because we have not installed the required package dependency. Clicking on the the app opens the Explore tab, which shows additional information about the missing package.
+%[text] Find the red **"Package Missing: Chart Examples"** button.
+%[text] Click **Package Missing: Chart Examples** to open the Explore tab and view the missing dependency message.
 %[text] ![](text:image:47d1)
 %%
-%[text] Let's close the app and check what packages are available and using the **`mpmlist`** command.
+%[text] Close the Flight Sensor app.
+%[text] Check the available packages before installing the missing dependency.
 mpmlist
-%[text] As you can see, the only package that is available is this project **`"Air Speed Virtual Sensor"`** which is noted as version **`"0.1.0-dev"`** to indicate that the package is under development.
+%[text] The only available package is the current **`"Air Speed Virtual Sensor"`** project, shown as version **`"0.1.0-dev"`**. Install **`Chart_Examples`** to enable the Explore option in the Flight Sensor app.
 %%
-%[text] ## Step 3: Install the Package Dependency
-%[text] Since R2025a you can install packages from File Exchange using a point-and-click workflow using the Add-Ons side panel, but with R2026b MPM now supports installing from File Exchange through an API. Package managers install packages from package repositories, and MPM supports several package repository types. We can see which package repositories are configured using the following:
+%[text] ## Step 3: Install a Package Dependency
+%[text] Install **`Chart_Examples`** to enable the Explore charts in the Flight Sensor app.
+%[text] In R2025a, MATLAB introduced the Add-Ons side panel for point-and-click installation from File Exchange. In R2026b, MATLAB Package Manager also supports File Exchange packages through an API.
+%[text] View the configured package repositories:
 mpmListRepositories
 %%
-%[text] By default in R2026b, File Exchange is pre-configured as a package repository. For more information about adding and removing package repositories, please see the following:
+%[text] File Exchange is preconfigured as a package repository in R2026b.
+%[text] For more information about package repositories, see:
 %[text] - [mpmAddRepository](https://www.mathworks.com/help/releases/R2026b/matlab/ref/mpmaddrepository.html)
 %[text] - [mpmRemoveRepository](https://www.mathworks.com/help/releases/R2026b/matlab/ref/mpmremoverepository.html) \
-%[text] Since we have confirmed that File Exchange is already a known package repository, you can run this command in the Command Window to install Chart Examples:
+%[text] Run this command in the Command Window to install **`Chart_Examples`**:
 %[text] ```matlabCodeExample
 %[text] mpminstall Chart_Examples
 %[text] ```
-%[text] NOTE: You will need to approve the installation of Chart\_Examples by typing "YES", "yes", "y", or simply hitting the Enter key
+%[text] <u>**NOTE:**</u> Approve the installation by typing "YES", "yes", or "y", or by pressing Enter.
 %[text] ![](text:image:7b92)
-%[text] 
-%[text] For this Live Script, we have added the optional name-value pair so that MPM will install Chart\_Examples without prompting the user for an interaction
+%[text] This Live Script uses an optional name-value argument to install **`Chart_Examples`** without a prompt:
 mpminstall("Chart_Examples",Prompt=false)
 mpmlist
 %%
-%[text] Alternatively, you can use the Add-Ons side panel to see what packages you have installed. You can filter out "MathWorks" as a source to more readily see the packages that you have installed.
+%[text] Use the Add-Ons side panel to browse installed packages.
 %[text] ![](text:image:1cc9)
 %%
-%[text] If you want to determine the command to install any particular package from File Exchange, you can see the command in the submission for File Exchange:
+%[text] Find the package installation command on its File Exchange submission page.
+%[text] Open the menu next to the **Download** button to view the **`mpminstall`** command.
 %[text] [https://www.mathworks.com/matlabcentral/fileexchange/65857-chart-examples](https://www.mathworks.com/matlabcentral/fileexchange/65857-chart-examples)
 %[text] ![](text:image:72ce)
-%[text] The File Exchange page also provides information about the package author, files, versions, and more.
+%[text] The File Exchange page also provides package author, file, and version information.
 %%
-%[text] Now that we have installed the package, let's reopen the project, and run **`FlightSensorApp`**. Click the **Explore Data** button, then explore the Trend and Relationship plot types.
+%[text] Launch **`FlightSensorApp`** again.
 FlightSensorApp
+%[text] Click **Refresh** to confirm that **`Chart_Examples`** is available.
+%[text] Click **Explore Data**.
+%[text] Select the Trend plot type.
+%[text] Select the Relationship plot type.
 %[text] ![](text:image:818d)
 %%
-%[text] The same app now works with both the project folders being added to the path and the package dependency being installed. But how can we help others who are using the MATLAB Project? If we do not have both the MATLAB path set up and the right packages installed, we end up in a situation where all we can say is "it works on my machine"
+%[text] The missing dependency is resolved for this MATLAB installation.
+%[text] Other users will still encounter the same missing dependency until the project declares what it needs.
+%[text] Declare the package dependency so MATLAB installs it whenever the project opens.
 %[text] ![](text:image:2971)
 %%
-%[text] ## Step 4: Declare the Package Dependency
-%[text] Starting in R2026b MATLAB Projects can declare its package requirements in **`matlab.toml`**. For **`FlightSensorApp`** to work properly we need **`Chart_Examples`** installed with a version greater than or equal to **`2.3.2`**. There are 3 methods available for this workshop to add this package dependency:
-%[text] 1. Interactively through the MATLAB Projects Toolstrip
-%[text] 2. Uncomment the **`[dependencies]`** table in **`matlab.toml`** provided to you for this workshop
-%[text] 3. Run the utility **`workshopAddPackageDependencyToProject.m`** to add the package for you \
+%[text] ## Step 4: Declare a Package Dependency
+%[text] Declare **`Chart_Examples`** in **`matlab.toml`** so MATLAB installs version **`2.3.2`** or later when the project opens.
+%[text] Choose one option:
+%[text] - **Option 1:** Add the dependency in the MATLAB Projects toolstrip
+%[text] - **OR**
+%[text] - **Option 2:** Uncomment the dependency template in **`matlab.toml`**
+%[text] - **OR**
+%[text] - **Option 3:** Run **`workshopAddPackageDependencyToProject`** \
 %%
 %[text] <u>**Option 1: Interactively add package dependency through the MATLAB Projects Toolstrip**</u>
-%[text] Let's start with the adding the package dependency interactively using the "Dependencies" button in the Project Toolstrip:
+%[text] Open **Dependencies** in the Project toolstrip.
 %[text] ![](text:image:4b01)
-%[text] This project does not have any dependencies declared, but you can add a new dependency with the new Dependency button to add a new Package Dependency
+%[text] Click **New Dependency**.
 %[text] ![](text:image:8c31)
-%[text] Search for "Chart" or "Chart\_Examples" and select the package dependency.
-%[text] ![](text:image:4f06)You can inspect the **`matlab.toml`** and ensure that the dependency is set to:
+%[text] Search for **`Chart_Examples`** and select the package dependency.
+%[text] ![](text:image:4f06)
+%[text] Confirm that **`matlab.toml`** contains:
 %[text] ```
 %[text] Chart_Examples = {version = ">=2.3.2", id = "d47c73c1-4864-4beb-93d4-9642d80fcb1b"}
 %[text] ```
 %%
-%[text] <u>**Option 2: Uncomment the**</u> <u>**`[dependencies]`**</u> <u>**table in**</u> <u>**`matlab.toml`**</u> <u>**provided to you for this workshop**</u>
-%[text] Alternatively, you can simply uncomment the dependency table in the **`matlab.toml`** by removing the **`#`** for the **`[dependencies]`** section.
+%[text] <u>**Option 2: Uncomment the dependency template in**</u> <u>**`matlab.toml`**</u>
+%[text] Remove the **`#`** from the **`[dependencies]`** line and the **`Chart_Examples`** line.
 %%
-%[text] <u>**Option 3: Run the utility**</u> <u>**`workshopAddPackageDependencyToProject.m`**</u> <u>**to add the package for you**</u>
-%[text] For the purpose of making this workshop easy to follow through this guide, the following utility function will add the package dependency for you:
+%[text] <u>**Option 3: Run the workshop utility**</u>
+%[text] Run the utility to activate the dependency template:
 workshopAddPackageDependencyToProject
-% Reload the project to install the dependencies
+%[text] Reload the project to install the declared dependency:
 proj = currentProject;
 proj.reload(Prompt=false);
 %%
-%[text] <u>**NOTE:**</u> MATLAB Projects support both a package dependency and a reference project dependency. You will use reference project dependencies if you do need to co-develop two code bases together. To create a reference project dependency, you would clone the git repository to another folder or add a git Submodule.
+%[text] <u>**NOTE:**</u> Use a package dependency for a package identified by name. Use a reference project dependency when you co-develop another project from a local folder or Git submodule.
 %%
-%[text] Here is a check that the dependency was added:
+%[text] Verify that the dependency was added:
 workshopVerifyPackageDependencyAddedToProject;
 %%
-%[text] ## Step 5: Close the Project to Close the Development Environment
-%[text] Now we can close the project and look at the updates to the **`matlab.toml`** file. You can do this using the toolstrip or via the MATLAB Project APIs:
+%[text] ## Step 5: Close the MATLAB Project
+%[text] Close the MATLAB Project to remove its folders from the MATLAB path.
+%[text] Use the Project toolstrip or run:
 %[text] ![](text:image:1022)
 proj = currentProject;
 proj.close;
-%[text] Note as well that when we close the project, the project folders are removed from the path, returning us to where we previously started.
+%[text] The project folders are now removed from the path.
 %[text] ![](text:image:30c0)
 %%
-%[text] We can open the diff report by right clicking on the **`matlab.toml`** file:
-%[text] ![](text:image:2764)We can see that the package is now declared as dependency in the new **`[dependencies]`** table:
+%[text] Review the project change by right-clicking **`matlab.toml`** and opening the diff report.
+%[text] ![](text:image:2764)
+%[text] The diff report shows the new **`[dependencies]`** table.
 %[text] ![](text:image:88b2)
 %%
-%[text] ## Step 6: Remove All Globally Installed Packages
-%[text] With the project close, we can see that the project folders have been removed from the path, but what about our packages? Previously we had used the **`mpminstall`** command to install **`Chart_Examples`**, and then we added it as package dependency. This means that we had installed it into a "global" environment. In R2026b, MATLAB Projects add on top of this global state, so we will still see **`Chart_Examples`** installed along with its package dependencies. We can verify this using **`mpmlist`**.
+%[text] ## Step 6: Remove Globally-Installed Packages
+%[text] Closing a project removes its paths but does not uninstall packages installed globally with **`mpminstall`**.
+%[text] List the globally installed packages:
 mpmlist
 %%
-%[text] We can uninstall all of these packages and verify that our MATLAB Project will still set up our development environment correctly.
+%[text] Uninstall the globally installed packages to confirm that the project can restore its own dependencies.
 mpmuninstall(mpmlist,"Prompt",false)
-%[text] Once again calling **`mpmlist`** to verify that we are back to a clean state.
+%[text] Confirm that the global package environment is clean:
 mpmlist
 %%
-%[text] ## Step 7: Use the MATLAB Project to Fully Configure the Development Environment
-%[text] So now our MATLAB is just like one of our colleague's who needs to run our code. We can open the Project and verify that our development environment is set up with the paths and packages we need to ensure that **`FlightSensorApp`** is ready to run.
+%[text] ## Step 7: Reopen the MATLAB Project
+%[text] Reopen the MATLAB Project to restore its paths and declared package dependencies.
 openProject(pwd,"Prompt",false);
-which FlightSensorApp
 %%
-%[text] And we can verify that **`Chart_Examples`** has been installed.
+%[text] Verify that **`Chart_Examples`** is installed:
 mpmlist
 %%
-%[text] With our development environment ready, we can simply run **`FlightSensorApp`**.
+%[text] Run **`FlightSensorApp`** with the restored development environment:
 FlightSensorApp
 %%
 %[text] ## Step 8: Run the Tests
-%[text] The project includes some tests for some of the functions in **`src`**. You can run the tests using the MATLAB Unit Testing APIs or through Build Tool. This project already has a **`buildfile.m`** which has pre-configured several common tasks such as checking code, running tests, and finally building the package. You can call the build tool or any specific tasks either from the MATLAB Project Toolstrip, from the MATLAB Editor with the **`buildfile.m`** open, or simply calling the build tool APIs:
+%[text] Run the project tests to verify the data-loading, cleaning, model-fitting, and sampling functions.
+%[text] The project **`buildfile.m`** defines tasks for code checks, tests, and package creation.
+%[text] Run the test task from the MATLAB Project toolstrip, the **`buildfile.m`** editor, or the command line:
 %[text] ![](text:image:6ce9)
 buildtool test -ui % MATLAB Build Tool API
 %[text] <u>**NOTE:**</u> For more information about testing, build automation, and continuous integration (CI), check out the following workshops:
 %[text] - Generating Tests for Your MATLAB Code Workshop: [https://github.com/mathworks/Generating-Tests-for-Your-MATLAB-Code-Workshop](https://github.com/mathworks/Generating-Tests-for-Your-MATLAB-Code-Workshop)
 %[text] - MATLAB Expo Workshop on Build Automation and CI: [https://github.com/mathworks/Expo-2023-Whats-New-for-Managing-Testing-and-Building-your-MATLAB-Code/](https://github.com/mathworks/Expo-2023-Whats-New-for-Managing-Testing-and-Building-your-MATLAB-Code/)
-%[text] - Continuous Integration with MATLAB and GitHub Actions Workshop: [https://github.com/mathworks/ci-with-matlab-and-github-actions-workshop/](https://github.com/mathworks/ci-with-matlab-and-github-actions-workshop/https://github.com/mathworks/ci-with-matlab-and-github-actions-workshop/) \
-%[text] All tests should be passing! Now we can proceed with building a package to share the app, functions, and data with others.
+%[text] - Continuous Integration with MATLAB and GitHub Actions Workshop: [https://github.com/mathworks/ci-with-matlab-and-github-actions-workshop/](https://github.com/mathworks/ci-with-matlab-and-github-actions-workshop/) \
+%[text] All tests should pass before you package the app and its supporting files.
 %%
-%[text] ## Step 9: Build the Package Interactively from the Project
-%[text] Once you are done developing your code, we can now easily share it as a package for others to consume and depend on. To get started, we can open the new "Build Package" tool in the MATLAB Projects Toolstrip:
+%[text] ## Step 9: Build the Package Interactively
+%[text] Create package metadata to share the app and supporting files with other MATLAB users.
+%[text] Open **Build Package** in the MATLAB Projects toolstrip:
 %[text] ![](text:image:479b)
-%[text] This will open the Package Task UI, and you can fill out information about the package. You will start by first selecting a package folder **`src`**.
+%[text] Select **`src`** as the package folder.
 %[text] ![](text:image:6b26)
-%[text] You can fill out the task with the following information:
+%[text] Enter the following package information:
 %[text] - Package Folder - **`src`**
 %[text] - Display name - Air Speed Virtual Sensor
 %[text] - Version - 1.0.0
@@ -165,56 +193,62 @@ buildtool test -ui % MATLAB Build Tool API
 %[text] You can find out more about these fields in the documentation:
 %[text] - [https://www.mathworks.com/help/matlab/matlab\_prog/interactively-create-and-share-packages.html\#mw\_71c97ec6-71ec-49a9-be81-d5ea1199a853](https://www.mathworks.com/help/matlab/matlab_prog/interactively-create-and-share-packages.html#mw_71c97ec6-71ec-49a9-be81-d5ea1199a853)  \
 %%
-%[text] Alternatively, You can simply use the utility function **`workshopAddPackageMetadataToProject.m`** for the purpose of the workshop:
+%[text] Alternatively, run **`workshopAddPackageMetadataToProject`** to add the package metadata:
 workshopAddPackageMetadataToProject
 %%
-%[text] Once again, we can see the changes in the **`matlab.toml`** by right clicking on **`matlab.toml`**, selecting "Source Control", and "View Changes".
+%[text] Review the metadata changes by right-clicking **`matlab.toml`**, selecting "Source Control", and selecting "View Changes".
 %[text] ![](text:image:6e22)
 %%
-%[text] Now that everything is set, simply click "Build Package" in the "Build Package" task to generate the MLTBX!
+%[text] Click **Build Package** to generate the **`.mltbx`** file.
 %[text] ![](text:image:8bda)
-%[text] You can now close the Tasks panel
+%[text] Close the Tasks panel.
 %[text] ![](text:image:3af8)
 %%
-%[text] ## Step 10: Build the Package Programmatically from the Project
-%[text] While we previously build the package interactively, you can also build the package programmatically using MATLAB build tool.
-%[text] All of the information we previously entered in to the Build Package Task is saved in the **`[[package]]`** section of **`matlab.toml`** file. We can view this by opening the **`matlab.toml`** as text or using edit
+%[text] ## Step 10: Build the Package Programmatically
+%[text] Build the package automatically with MATLAB Build Tool.
+%[text] The **`[[package]]`** section in **`matlab.toml`** stores the package configuration. View it with:
 edit matlab.toml
 %%
-%[text] In R2026b, MATLAB build tool has a new **`PackageTask`** that reads configuration in the **`matlab.toml`** to build the **`.mltbx`** file with the right way. You can see the new **`PackageTask`** already added to the **`buildfile.m`** using the following:
+%[text] In R2026b, **`PackageTask`** reads the package configuration in **`matlab.toml`** to build the **`.mltbx`** file.
+%[text] View the **`PackageTask`** already defined in **`buildfile.m`**:
 edit buildfile
-%[text] With everything already configured, you can simply call the task to generate the **`.mltbx`** file using the build tool API or the dropdown in the MATLAB Toolstrip
+%[text] Run the package task:
 %%
 buildtool package
-%[text] Confirm that the package was built by verifying that **`Package1/release/AirSpeedVirtualSensor_1_0_0.mltbx`** exists.
+%[text] Confirm that **`Package1/release/Air Speed Virtual Sensor.mltbx`** exists.
 %[text] ![](text:image:4bfc)
-%[text] Now that we have built the package, we are ready to publish this to a package repository.
+%[text] The package is ready to publish to a package repository.
 %%
-%[text] ## Step 11: Verify Newly Built Package
-%[text] For the workshop today, we will close by verifying locally that the MLTBX will correctly install for any package consumers. We will first close the project, ensure that no other packages are installed, and then manually install the package.
-% Close the project
+%[text] ## Step 11: Verify the Package You Built
+%[text] Verify that the **`.mltbx`** installs in a clean MATLAB package environment.
+%[text] Close the project:
 proj = currentProject;
 proj.close;
 %%
-% Verify no other packages are installed
+%[text] Confirm that no packages are installed:
 mpmlist
 %%
-% Navigate to the releases folder
+%[text] Navigate to the package output folder:
 cd("Package1/release")
 %%
-out = dir
+%[text] List the package file:
+dir
 %%
+%[text] Install the package:
 mpminstall("Air Speed Virtual Sensor.mltbx",Prompt=false)
 %%
+%[text] Verify the installed package:
 mpmlist
 %%
+%[text] Remove the installed package:
 mpmuninstall("AirSpeedVirtualSensor",Prompt=false)
 %%
-%[text] And finally let's return to the Project Root
+%[text] Return to the project root:
 cd("../..")
 %%
 %[text] ## Summary
-%[text] MATLAB Projects ensure that your have a consistent environment for your codebase by managing the paths, package dependencies, tests, and other metadata in a single **`matlab.toml`** file. MATLAB Projects ensures your code is ready to run on your machine, your colleague's machine, and in CI.
+%[text] A MATLAB Project keeps paths, package dependencies, tests, and package metadata in one **`matlab.toml`** file.
+%[text] This project configuration keeps your code ready to run on your machine, a colleague's machine, in CI, and with AI agents.
 %[text] ![](text:image:26d6)
 
 %[appendix]{"version":"1.0"}

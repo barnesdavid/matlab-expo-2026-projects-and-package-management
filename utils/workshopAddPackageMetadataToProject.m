@@ -1,9 +1,11 @@
 function workshopAddPackageMetadataToProject
+%WORKSHOPADDPACKAGEMETADATATOPROJECT Add the workshop package metadata.
 projectFileLines = readlines("matlab.toml");
 if any(projectFileLines == "[[package]]")
     return
 end
 
+% Keep exactly one blank line between existing TOML and an appended section.
 while ~isempty(projectFileLines) && projectFileLines(end) == ""
     projectFileLines(end) = [];
 end

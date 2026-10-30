@@ -49,7 +49,7 @@ The starter `matlab.toml` includes a commented `Chart_Examples` dependency templ
 - `src/examples/ExploreVirtualSensorWithChartExamples.m` - Chart Examples exploration script
 - `tests/` - Unit tests for the data-loading, cleaning, model-fitting, and sampling functions
 - `utils/` - Workshop helpers for adding package dependencies and metadata, verifying the dependency, and restoring the starter project configuration
-- `buildfile.m` - Build Tool tasks for code checks, tests, and toolbox packaging
+- `buildfile.m` - Build Tool tasks for code checks, tests, and building a package
 
 ## Build a Package from the Project
 

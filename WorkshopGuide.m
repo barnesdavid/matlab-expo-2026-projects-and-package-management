@@ -260,9 +260,6 @@ mpmuninstall("AirSpeedVirtualSensor",Prompt=false)
 %[text] - [Share and install packages with custom repositories using MATLAB package repository service ](https://www.mathworks.com/help/matlab/release-notes.html#mw_a998a4a9-ff19-4276-9c85-c2a69ee20507)
 %[text] - [MATLAB Software Development Skills (in MATLAB Agentic Toolkit)](https://github.com/matlab/matlab-agentic-toolkit/tree/main/skills-catalog) \
 %[text] %[text:anchor:M_0f4f] For more information about testing, build automation, and continuous integration (CI), check out the following workshops:
-%[text] - Generating Tests for Your MATLAB Code Workshop: [https://github.com/mathworks/Generating-Tests-for-Your-MATLAB-Code-Workshop](https://github.com/mathworks/Generating-Tests-for-Your-MATLAB-Code-Workshop)
-%[text] - MATLAB Expo Workshop on Build Automation and CI: [https://github.com/mathworks/Expo-2023-Whats-New-for-Managing-Testing-and-Building-your-MATLAB-Code/](https://github.com/mathworks/Expo-2023-Whats-New-for-Managing-Testing-and-Building-your-MATLAB-Code/)
-%[text] - Continuous Integration with MATLAB and GitHub Actions Workshop: [https://github.com/mathworks/ci-with-matlab-and-github-actions-workshop/](https://github.com/mathworks/ci-with-matlab-and-github-actions-workshop/)
 %[text] - [Generating Tests for Your MATLAB Code Workshop (GitHub)](https://github.com/mathworks/Generating-Tests-for-Your-MATLAB-Code-Workshop)
 %[text] - [MATLAB Expo Workshop on Build Automation and CI (GitHub)](https://github.com/mathworks/Expo-2023-Whats-New-for-Managing-Testing-and-Building-your-MATLAB-Code/)
 %[text] - [Continuous Integration with MATLAB and GitHub Actions Workshop (GitHub)](https://github.com/mathworks/ci-with-matlab-and-github-actions-workshop/) \

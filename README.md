@@ -34,7 +34,11 @@ Use the [MATLAB Expo 2026 workshop license](https://www.mathworks.com/licensecen
 2. In the Project tab, select **WorkshopGuide**.
 3. Complete `WorkshopGuide.m` in order.
 
-Step-by-step instructions are available in [WorkshopGuide.md](WorkshopGuide.md) or [WorkshopGuide.m](WorkshopGuide.m).
+Step-by-step instructions are available in:
+
+- [WorkshopGuide.m](WorkshopGuide.m) - Interactive plain-text Live Script for completing the workshop in MATLAB
+- [WorkshopGuide.md](WorkshopGuide.md) - Markdown version for viewing on GitHub or in another editor
+- [WorkshopGuide.pdf](WorkshopGuide.pdf) - PDF reference version
 
 The guide begins with the app's core workflow and an optional File Exchange capability that is unavailable until `Chart_Examples` is installed. Use the app **Refresh** button after installing the package to recheck its availability without closing the app.
 
@@ -43,6 +47,8 @@ The starter `matlab.toml` includes a commented `Chart_Examples` dependency templ
 ## Workshop Contents
 
 - `WorkshopGuide.m` - Plain-text live script containing the student workflow
+- `WorkshopGuide.md` - Markdown version of the workshop guide
+- `WorkshopGuide.pdf` - PDF version of the workshop guide
 - `matlab.toml` - MATLAB Project configuration
 - `src/app/FlightSensorApp.m` - Plain-text App Designer app
 - `src/data/FlightData.xlsx` - Flight sensor data used by the app

@@ -207,15 +207,14 @@ buildtool package
 %[text] The package is ready to publish to a package repository.
 %%
 %[text] ## Step 11: Install the Package You Built
-%[text] For the final step, we can install the **`.mltbx`** you just built. Let's start  by closing the MATLAB Project.
+%[text] For the final step, we can install the **`.mltbx`** you just built. Let's start by closing the MATLAB Project.
 proj = currentProject;
 proj.close;
 %%
 %[text] Confirm that no packages are installed:
 mpmlist
 %%
-%[text] You have two different ways of installing the package:
-%[text] You can choose one of these options to install the package during the workshop today
+%[text] You have two different ways of installing the package during the workshop today:
 %[text] - [Option 1: Install with point-and-click on the `.mltbx` file](internal:M_0cc1)
 %[text]     - **OR**
 %[text] - [Option 2: Install with programmatically with `mpminstall`](internal:M_7c9c) \
@@ -239,15 +238,17 @@ mpminstall("Package1/release/Air Speed Virtual Sensor.mltbx",Prompt=false)
 %[text] Now we can check that the package was installed along with its dependencies:
 mpmlist
 %%
-%[text] The **`.mltbx`** file is the package artifact you publish to a package repository so other users can install it with MATLAB Package Manager.
-%[text] This workshop verifies local installation before publication.
+%[text] If you ever want to know what a package can do, simply call help on the package name:
+help AirSpeedVirtualSensor
 %%
-%[text] Remove the installed package:
+%[text] The **`.mltbx`** file is the package artifact you publish to a package repository so other users can install it with MATLAB Package Manager.
+%%
+%[text] Now we can simple remove the installed package to clean up the MATLAB environment:
 mpmuninstall("AirSpeedVirtualSensor",Prompt=false)
 %%
 %[text] ## Summary
 %[text] Congratulations! You have completed the "Consistent Development Environments with MATLAB Projects and Package Management" workshop! In this workshop you:
-%[text] - Used MATLAB Projects to setup your development environment
+%[text] - Used MATLAB Projects to set up your development environment
 %[text] - Added **`Chart_Examples`** as a package dependency to the **`matlab.toml`** so that it is installed whenever the project is opened
 %[text] - Built a MATLAB package that can easily be shared and installed by others as an **`.mltbx`** file \
 %[text] MATLAB Projects keep paths, package dependencies, tests, and package metadata in one **`matlab.toml`** file so that your code ready to run on your machine, a colleague's machine, in CI, and with AI agents.

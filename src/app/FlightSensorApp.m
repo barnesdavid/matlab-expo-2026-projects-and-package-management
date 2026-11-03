@@ -1,4 +1,5 @@
 classdef FlightSensorApp < matlab.apps.App
+    % Flight Sensor app explores aircraft telemetry and estimates true airspeed from other sensor signals
 
     % Used to locate and load the app's XML configuration file
     properties (Access = public, Constant)

@@ -104,7 +104,7 @@ FlightSensorApp
 %[text] %[text:anchor:M_1d99] <u>**Option 2: Uncomment the dependency template in**</u> <u>**`matlab.toml`**</u>
 %[text] Open the `matlab.toml` file as text using the right-click context menu and select "**Open as Text**":
 %[text] ![](text:image:33ba)
-%[text] Remove the **`#`** from the the **`Chart_Examples`** line in **`matlab.toml`**.
+%[text] Remove the **`#`** from the **`Chart_Examples`** line in **`matlab.toml`**.
 %[text] ![](text:image:7c3b)
 %%
 %[text] %[text:anchor:M_9595] <u>**Option 3: Run the workshop utility**</u>
@@ -216,9 +216,9 @@ mpmlist
 %%
 %[text] You have two different ways of installing the package:
 %[text] You can choose one of these options to install the package during the workshop today
-%[text] - [Option 1: Install with point-and-click on the **`.mltbx`** file](internal:M_0cc1)
+%[text] - [Option 1: Install with point-and-click on the `.mltbx` file](internal:M_0cc1)
 %[text]     - **OR**
-%[text] - [Option 2: Install with programmatically with **`mpminstall`**](internal:M_7c9c) \
+%[text] - [Option 2: Install with programmatically with `mpminstall`](internal:M_7c9c) \
 %%
 %[text] %[text:anchor:M_0cc1] <u>**Option 1: Install with point-and-click on the**</u> <u>**`.mltbx`**</u> <u>**file**</u>
 %[text] Install the **`Air Speed Virtual Sensor.mltbx`** by double clicking on the file.
@@ -252,8 +252,8 @@ mpmuninstall("AirSpeedVirtualSensor",Prompt=false)
 %%
 %[text] ## Additional Resources
 %[text] - [Develop and Share Software in MATLAB Overview](https://www.mathworks.com/help/matlab/matlab_prog/recommended-workflow-for-software-development.html)
-%[text] - [MATLAB Projects TOML Format (**`matlab.toml`**)](https://www.mathworks.com/help/matlab/matlab_prog/toml-format-for-matlab-projects.html)
-%[text] - [MATLAB build tool new **`PackageTask`**](https://www.mathworks.com/help/matlab/ref/matlab.buildtool.tasks.packagetask-class.html)
+%[text] - [MATLAB Projects TOML Format (`matlab.toml`)](https://www.mathworks.com/help/matlab/matlab_prog/toml-format-for-matlab-projects.html)
+%[text] - [MATLAB build tool new `PackageTask`](https://www.mathworks.com/help/matlab/ref/matlab.buildtool.tasks.packagetask-class.html)
 %[text] - [Install from File Exchange](https://www.mathworks.com/help/matlab/release-notes.html#mw_a37f87c3-6f2d-48a9-99af-59c3bb05f764)
 %[text] - [Share and install packages with custom repositories using MATLAB package repository service ](https://www.mathworks.com/help/matlab/release-notes.html#mw_a998a4a9-ff19-4276-9c85-c2a69ee20507)
 %[text] - [MATLAB Software Development Skills (in MATLAB Agentic Toolkit)](https://github.com/matlab/matlab-agentic-toolkit/tree/main/skills-catalog) \

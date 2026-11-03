@@ -34,6 +34,7 @@ newLines = [
     "    ""MATLAB"","
     "    ""Statistics and Machine Learning Toolbox"","
     "]"
+    "getting-started-file = ""examples/ExploreVirtualSensorWithChartExamples.m"""
     ];
 writelines([projectFileLines; newLines], "matlab.toml");
 end

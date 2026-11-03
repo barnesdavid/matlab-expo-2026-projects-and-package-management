@@ -201,6 +201,7 @@ edit buildfile
 %%
 %[text] Run the package task:
 buildtool package
+%%
 %[text] Confirm that **`Package1/release/Air Speed Virtual Sensor.mltbx`** exists.
 %[text] ![](text:image:4bfc)
 %[text] The package is ready to publish to a package repository.
@@ -215,12 +216,12 @@ mpmlist
 %%
 %[text] You have two different ways of installing the package:
 %[text] You can choose one of these options to install the package during the workshop today
-%[text] - [Option 1: Install with point-and-click on the `.mltbx` file](internal:M_0cc1)
+%[text] - [Option 1: Install with point-and-click on the **`.mltbx`** file](internal:M_0cc1)
 %[text]     - **OR**
-%[text] - [Option 2: Install with programmatically with `mpminstall`](internal:M_7c9c) \
+%[text] - [Option 2: Install with programmatically with **`mpminstall`**](internal:M_7c9c) \
 %%
 %[text] %[text:anchor:M_0cc1] <u>**Option 1: Install with point-and-click on the**</u> <u>**`.mltbx`**</u> <u>**file**</u>
-%[text] Install the Air Speed Virtual Sensor.mltbx by double clicking on the file.
+%[text] Install the **`Air Speed Virtual Sensor.mltbx`** by double clicking on the file.
 %[text] ![](text:image:8df2)
 %[text] Agree to the license terms of the package and optionally select "Do not show this message again":
 %[text] ![](text:image:9213)
@@ -244,14 +245,14 @@ mpmuninstall("AirSpeedVirtualSensor",Prompt=false)
 %[text] ## Summary
 %[text] Congratulations! You have completed the "Consistent Development Environments with MATLAB Projects and Package Management" workshop! In this workshop you:
 %[text] - Used MATLAB Projects to setup your development environment
-%[text] - Added a package dependency to your project so that it is installed whenever the project is opened
-%[text] - Built a MATLAB package that can easily be shared and installed by others \
-%[text] MATLAB Projects keep paths, package dependencies, tests, and package metadata in one **`matlab.toml`** file, and this project configuration keeps your code ready to run on your machine, a colleague's machine, in CI, and with AI agents.
+%[text] - Added **`Chart_Examples`** as a package dependency to the **`matlab.toml`** so that it is installed whenever the project is opened
+%[text] - Built a MATLAB package that can easily be shared and installed by others as an **`.mltbx`** file \
+%[text] MATLAB Projects keep paths, package dependencies, tests, and package metadata in one **`matlab.toml`** file so that your code ready to run on your machine, a colleague's machine, in CI, and with AI agents.
 %[text] ![](text:image:26d6)
 %%
 %[text] ## Additional Resources
 %[text] - [Develop and Share Software in MATLAB Overview](https://www.mathworks.com/help/matlab/matlab_prog/recommended-workflow-for-software-development.html)
-%[text] - [MATLAB Projects TOML Format (.toml)](https://www.mathworks.com/help/matlab/matlab_prog/toml-format-for-matlab-projects.html)
+%[text] - [MATLAB Projects TOML Format (**`matlab.toml`**)](https://www.mathworks.com/help/matlab/matlab_prog/toml-format-for-matlab-projects.html)
 %[text] - [MATLAB build tool new **`PackageTask`**](https://www.mathworks.com/help/matlab/ref/matlab.buildtool.tasks.packagetask-class.html)
 %[text] - [Install from File Exchange](https://www.mathworks.com/help/matlab/release-notes.html#mw_a37f87c3-6f2d-48a9-99af-59c3bb05f764)
 %[text] - [Share and install packages with custom repositories using MATLAB package repository service ](https://www.mathworks.com/help/matlab/release-notes.html#mw_a998a4a9-ff19-4276-9c85-c2a69ee20507)
@@ -260,6 +261,7 @@ mpmuninstall("AirSpeedVirtualSensor",Prompt=false)
 %[text] - [Generating Tests for Your MATLAB Code Workshop (GitHub)](https://github.com/mathworks/Generating-Tests-for-Your-MATLAB-Code-Workshop)
 %[text] - [MATLAB Expo Workshop on Build Automation and CI (GitHub)](https://github.com/mathworks/Expo-2023-Whats-New-for-Managing-Testing-and-Building-your-MATLAB-Code/)
 %[text] - [Continuous Integration with MATLAB and GitHub Actions Workshop (GitHub)](https://github.com/mathworks/ci-with-matlab-and-github-actions-workshop/) \
+%%
 %[text] Copyright 2026 The MathWorks, Inc.
 
 %[appendix]{"version":"1.0"}

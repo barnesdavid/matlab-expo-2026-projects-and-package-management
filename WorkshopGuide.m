@@ -239,6 +239,9 @@ mpminstall("Package1/release/Air Speed Virtual Sensor.mltbx",Prompt=false)
 %[text] Now we can check that the package was installed along with its dependencies:
 mpmlist
 %%
+%[text] The **`.mltbx`** file is the package artifact you publish to a package repository so other users can install it with MATLAB Package Manager.
+%[text] This workshop verifies local installation before publication.
+%%
 %[text] Remove the installed package:
 mpmuninstall("AirSpeedVirtualSensor",Prompt=false)
 %%

@@ -1,16 +1,16 @@
 # MATLAB Projects and Package Management
 
-This 90-minute workshop introduces MATLAB Projects and MATLAB Package Manager to set up a consistent development environment that works on my machine, your machine, and in Continuous Integration (CI) systems.
+This 90-minute workshop shows how MATLAB Projects and MATLAB Package Manager create a consistent development environment for people, continuous integration (CI) systems, and AI agents.
 
 ## About the Workshop
 
 This hands-on workshop guides you through:
 
-- Set up the development environment by opening the MATLAB Project
-- Install the package dependency `Chart_Examples` from File Exchange
-- Declare package dependencies in the `matlab.toml`
-- Run tests to verify the code works as intended
-- Build a package from the project using Build Tool
+- Open a MATLAB Project to set up the development environment
+- Run `FlightSensorApp`, which has a package dependency
+- Install `Chart_Examples` from File Exchange using MATLAB Package Manager
+- Declare `Chart_Examples` in `matlab.toml` so MATLAB installs it when the project opens
+- Build an `.mltbx` file to share the app and its supporting files
 
 ## Open in MATLAB Online
 
@@ -48,17 +48,17 @@ The starter `matlab.toml` includes a commented `Chart_Examples` dependency templ
 - `src/data/FlightData.xlsx` - Flight sensor data used by the app
 - `src/examples/ExploreVirtualSensorWithChartExamples.m` - Chart Examples exploration script
 - `tests/` - Unit tests for the data-loading, cleaning, model-fitting, and sampling functions
-- `utils/` - Workshop helpers for adding package dependencies and metadata, verifying the dependency, and restoring the starter project configuration
+- `utils/` - Workshop helpers for adding package dependencies and metadata and restoring the starter project configuration
 - `buildfile.m` - Build Tool tasks for code checks, tests, and building a package
 
 ## Build a Package from the Project
 
-The starter `matlab.toml` intentionally does not contain a `[[package]]` section. During the workshop, create the package configuration with the **Build Package** task or `workshopAddPackageMetadataToProject`. Only after that configuration exists can you run:
+The starter `matlab.toml` intentionally does not contain a `[[package]]` section. During the workshop, create the package configuration by clicking **Build Package** in the MATLAB Project Toolstrip or running `workshopAddPackageMetadataToProject`. Only after that configuration exists can you run:
 
 ```matlab
 buildtool package
 ```
 
-The task creates the `.mltbx` file in the output folder configured in the package task.
+The task creates the `.mltbx` package file in the output folder configured in the package task. The `.mltbx` can then be published to a package repository so other users can install the package with MATLAB Package Manager.
 
 Copyright 2026 The MathWorks, Inc.

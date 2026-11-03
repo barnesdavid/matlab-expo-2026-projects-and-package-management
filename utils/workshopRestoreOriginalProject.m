@@ -11,7 +11,7 @@ newLines = [
     "[project]"
     "summary = ""MATLAB Expo workshop for MATLAB Projects and package management in R2026b."""
     "shortcuts = {"
-    "WorkshopGuide = {path = ""WorkshopGuide.m""},"
+    "WorkshopGuide = {path = ""utils/workshopOpenWorkshopGuide.m""},"
     "FlightSensorApp = {path = ""src/app/FlightSensorApp.m""}}"
     ""
     "[dependencies]"

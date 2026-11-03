@@ -80,7 +80,7 @@ FlightSensorApp
 %[text] ![](text:image:2971)
 %%
 %[text] ## Step 4: Declare a Package Dependency
-%[text] We need to declare **`Chart_Examples`** version \>=**`2.3.2`** in **`matlab.toml`** so MATLAB installs the right version when the project opens.
+%[text] We need to declare **`Chart_Examples`** version **`>=2.3.2`** in **`matlab.toml`** so MATLAB installs the right version when the project opens.
 %[text] You can choose one of these options to add the package dependency during the workshop today:
 %[text] - [Option 1: Add the dependency interactively using the MATLAB Projects toolstrip](internal:M_7c31)
 %[text]     - **OR**

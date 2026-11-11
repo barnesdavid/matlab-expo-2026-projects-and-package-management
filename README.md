@@ -1,4 +1,4 @@
-# MATLAB Projects and Package Management
+# MATLAB® Projects and Package Management
 
 This 90-minute workshop shows how MATLAB Projects and MATLAB Package Manager create a consistent development environment for people, continuous integration (CI) systems, and AI agents.
 
@@ -12,15 +12,15 @@ This hands-on workshop guides you through:
 - Declare `Chart_Examples` in `matlab.toml` so MATLAB installs it when the project opens
 - Build an `.mltbx` file to share the app and its supporting files
 
-## Open in MATLAB Online
+## Open in MATLAB® Online™
 
 [![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=barnesdavid/matlab-expo-2026-projects-and-package-management&file=WorkshopGuide.m)
 
-The workshop requires MATLAB R2026b and Statistics and Machine Learning Toolbox.
+The workshop requires MATLAB R2026b and Statistics and Machine Learning Toolbox™.
 
 ## Workshop License
 
-Use the [MATLAB Expo 2026 workshop license](https://www.mathworks.com/licensecenter/classroom/expo2026-4) to start MATLAB for this workshop.
+Use the [MATLAB® Expo 2026 workshop license](https://www.mathworks.com/licensecenter/classroom/expo2026-4) to start MATLAB for this workshop.
 
 ## Getting Started
 
@@ -31,7 +31,7 @@ Use the [MATLAB Expo 2026 workshop license](https://www.mathworks.com/licensecen
 Step-by-step instructions are available in:
 
 - [WorkshopGuide.m](WorkshopGuide.m) - Interactive plain-text Live Script for completing the workshop in MATLAB
-- [WorkshopGuide.md](WorkshopGuide.md) - Markdown version for viewing on GitHub or in another editor
+- [WorkshopGuide.md](WorkshopGuide.md) - Markdown version for viewing on GitHub® or in another editor
 - [PresentationSlides.pdf](PresentationSlides.pdf) - Workshop presentation slides
 
 The guide begins with the app's core workflow and an optional File Exchange capability that is unavailable until `Chart_Examples` is installed. Use the app **Refresh** button after installing the package to recheck its availability without closing the app.
@@ -61,4 +61,4 @@ buildtool package
 
 The task creates the `.mltbx` package file in the output folder configured in the package task. The `.mltbx` can then be published to a package repository so other users can install the package with MATLAB Package Manager.
 
-Copyright 2026 The MathWorks, Inc.
+Copyright 2026 The MathWorks, Inc. MATLAB and Simulink are registered trademarks of The MathWorks, Inc. See mathworks.com/trademarks for a list of additional trademarks. Other product or brand names may be trademarks or registered trademarks of their respective holders.

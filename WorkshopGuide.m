@@ -1,4 +1,4 @@
-%[text] # Consistent Development Environments with MATLAB Projects and Package Management
+%[text] # Consistent Development Environments with MATLAB® Projects and Package Management
 %[text] This 90-minute workshop shows how MATLAB Projects and MATLAB Package Manager create a consistent development environment for people, continuous integration (CI) systems, and AI agents.
 %[text:tableOfContents]{"heading":"Table of Contents"}
 %%
@@ -14,8 +14,8 @@
 %%
 %[text] ## Workshop Requirements
 %[text] You need the following to complete this workshop:
-%[text] - MATLAB R2026b with Statistics and Machine Learning Toolbox
-%[text] - The complimentary [MATLAB Expo 2026 workshop license](https://www.mathworks.com/licensecenter/classroom/expo2026-4) \
+%[text] - MATLAB R2026b with Statistics and Machine Learning Toolbox™
+%[text] - The complimentary [MATLAB® Expo 2026 workshop license](https://www.mathworks.com/licensecenter/classroom/expo2026-4) \
 %%
 %[text] ## Step 1: Open the MATLAB Project
 %[text] Open the MATLAB Project to add the project folders to the path automatically.
@@ -120,7 +120,7 @@ proj.reload(Prompt=false);
 %[text] The diff report shows the new **`[dependencies]`** table.
 %[text] ![](text:image:6c7f)
 %%
-%[text] <u>**NOTE:**</u> MATLAB Projects support both package dependencies and a reference project dependencies. You should use reference project dependencies if you need to co-develop two or more code bases together. To create a reference project dependency, first clone the Git repository to another folder or add it as a Git Submodule.
+%[text] <u>**NOTE:**</u> MATLAB Projects support both package dependencies and reference project dependencies. You should use reference project dependencies if you need to co-develop two or more code bases together. To create a reference project dependency, first clone the GitHub® repository to another folder or add it as a Git™ submodule.
 %%
 %[text] ## Step 5: Close the MATLAB Project
 %[text] Close the MATLAB Project to remove its folders from the MATLAB path using the Project toolstrip or the MATLAB Projects API.
@@ -266,7 +266,7 @@ mpmuninstall("AirSpeedVirtualSensor",Prompt=false)
 %[text] - [MATLAB Expo Workshop on Build Automation and CI (GitHub)](https://github.com/mathworks/Expo-2023-Whats-New-for-Managing-Testing-and-Building-your-MATLAB-Code/)
 %[text] - [Continuous Integration with MATLAB and GitHub Actions Workshop (GitHub)](https://github.com/mathworks/ci-with-matlab-and-github-actions-workshop/) \
 %%
-%[text] Copyright 2026 The MathWorks, Inc.
+%[text] Copyright 2026 The MathWorks, Inc. MATLAB and Simulink are registered trademarks of The MathWorks, Inc. See mathworks.com/trademarks for a list of additional trademarks. Other product or brand names may be trademarks or registered trademarks of their respective holders.
 
 %[appendix]{"version":"1.0"}
 %---

@@ -1,6 +1,6 @@
 <a id="TMP_9274"></a>
 
-# Consistent Development Environments with MATLAB Projects and Package Management
+# Consistent Development Environments with MATLAB® Projects and Package Management
 
 This 90\-minute workshop shows how MATLAB Projects and MATLAB Package Manager create a consistent development environment for people, continuous integration (CI) systems, and AI agents.
 
@@ -60,8 +60,8 @@ In this workshop, you will:
 
 You need the following to complete this workshop:
 
-- MATLAB R2026b with Statistics and Machine Learning Toolbox
-- The complimentary [MATLAB Expo 2026 workshop license](https://www.mathworks.com/licensecenter/classroom/expo2026-4)
+- MATLAB R2026b with Statistics and Machine Learning Toolbox™
+- The complimentary [MATLAB® Expo 2026 workshop license](https://www.mathworks.com/licensecenter/classroom/expo2026-4)
 
 <a id="TMP_13af"></a>
 
@@ -301,7 +301,7 @@ The diff report shows the new **`[dependencies]`** table.
 
 ![image_17.svg](./WorkshopGuide_media/image_17.svg)
 
-**NOTE:** MATLAB Projects support both package dependencies and a reference project dependencies. You should use reference project dependencies if you need to co\-develop two or more code bases together. To create a reference project dependency, first clone the Git repository to another folder or add it as a Git Submodule.
+**NOTE:** MATLAB Projects support both package dependencies and reference project dependencies. You should use reference project dependencies if you need to co\-develop two or more code bases together. To create a reference project dependency, first clone the GitHub® repository to another folder or add it as a Git™ submodule.
 
 <a id="TMP_002d"></a>
 
@@ -719,4 +719,4 @@ For more information about testing, build automation, and continuous integration
 - [MATLAB Expo Workshop on Build Automation and CI (GitHub)](https://github.com/mathworks/Expo-2023-Whats-New-for-Managing-Testing-and-Building-your-MATLAB-Code/)
 - [Continuous Integration with MATLAB and GitHub Actions Workshop (GitHub)](https://github.com/mathworks/ci-with-matlab-and-github-actions-workshop/)
 
-Copyright 2026 The MathWorks, Inc.
+Copyright 2026 The MathWorks, Inc. MATLAB and Simulink are registered trademarks of The MathWorks, Inc. See mathworks.com/trademarks for a list of additional trademarks. Other product or brand names may be trademarks or registered trademarks of their respective holders.
